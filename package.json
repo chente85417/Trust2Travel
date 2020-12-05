@@ -1,6 +1,8 @@
 {
   "name": "trust2travel",
   "version": "0.1.0",
+  "description": "Crew challenge project for The Bridge, group 5",
+  "main": "server.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
@@ -9,7 +11,12 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,6 +24,15 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "keywords": [
+    "travel",
+    "certificates",
+    "search",
+    "eco",
+    "sustainability"
+  ],
+  "author": "Vicente Alejandro Garcerán Blanco",
+  "license": "GPL-3.0-or-later",
   "eslintConfig": {
     "extends": [
       "react-app",
