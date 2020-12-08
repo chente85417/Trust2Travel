@@ -1,0 +1,48 @@
+#header{
+    height: 5vh;
+    display: flex;
+    justify-content: right;
+    background-color:  rgb(251, 208, 208);
+}
+#btn_login, #btn_register{
+    padding: .3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    color:rgb(155, 68, 85);
+}
+#messageBox {
+    position: absolute;
+    top: 250px;
+    left: 20%;
+    padding: 1em;
+    background-color: whitesmoke;
+    color: crimson;
+    -webkit-box-shadow: 5px 5px 24px -7px #000000;
+            box-shadow: 5px 5px 24px -7px #000000;
+  }
+  
+  .unvisible {
+    visibility: hidden;
+  }
+  
+  @-webkit-keyframes movForm {
+    to {
+      top: 5vh;
+    }
+  }
+  
+  @keyframes movForm {
+    to {
+      top: 5vh;
+    }
+  }
+  
+  .movForm {
+    -webkit-animation: movForm 0.5s cubic-bezier(0, 0.73, 0, 1.55) 0.5s;
+            animation: movForm 0.5s cubic-bezier(0, 0.73, 0, 1.55) 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+  }

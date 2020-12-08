@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
 	USRID int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria de la tabla. Acepta hasta 2^32 usuarios',
     EMAIL varchar(255) NOT NULL COMMENT 'Nombre de usuario basado en email. Obligatorio',
     PASS varchar(128) NOT NULL COMMENT 'Contraseña como cadena encriptada en backend. Obligatorio',
-    FECHAREGISTRO datetime DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora de registro del usuario. Puede usarse para comprobar la antigüedad del usuario',
+    FECHAREGISTRO datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora de registro del usuario. Puede usarse para comprobar la antigüedad del usuario',
     FECHANACIMIENTO date COMMENT 'Fecha de nacimiento del usuario sin hora. Puede emplearse para conocer su edad',
-    GENERO enum('Hombre', 'Mujer'),
+    GENERO enum('Hombre', 'Mujer', 'Otro'),
     PRIMARY KEY(USRID)
 ) COMMENT 'Tabla que almacena los usuarios registrado';
 

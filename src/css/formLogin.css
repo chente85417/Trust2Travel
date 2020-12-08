@@ -1,0 +1,88 @@
+/* MOBILE FIRST */
+#formLogin {
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    top: -600px;
+  }
+  
+  #formLogin #contLoginData {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  
+  #formLogin #contLoginData .editElements:first-child {
+    border-bottom: 0px;
+    background-color: #d3d3d3bb;
+  }
+  
+  #formLogin #contLoginData .editElements:nth-child(2) label {
+    padding-top: .3em;
+  }
+  
+  #formLogin #contLoginData .editElements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  #formLogin #contLoginData .editElements label {
+    width: 100%;
+    background-color: ghostwhite;
+    color: grey;
+    padding: .2em .5em;
+    font-size: .9em;
+  }
+  
+  #formLogin #contLoginData .editElements input {
+    width: 100%;
+    font-size: 1.1em;
+    border: 0px;
+    padding: .4em .5em;
+  }
+  
+  #formLogin #btnsContainerLogin {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  #formLogin #btnsContainerLogin button {
+    width: 50%;
+    padding: .5em .2em;
+    background-color: darkslateblue;
+    color: cornsilk;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+  }
+
+  #formLogin #btnsContainerOAuthLogin {
+    margin: 2em 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #formLogin #btnsContainerOAuthLogin button {
+    width: 60%;
+    margin-bottom: 1em;
+    padding: .5em .2em;
+    background-color: darkslateblue;
+    color: cornsilk;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+  }
+  
+  /*FORMATO TABLET*/
+  /*FORMATO LAPTOP-DESKTOP*/
+  /*# sourceMappingURL=formLogin.css.map */
