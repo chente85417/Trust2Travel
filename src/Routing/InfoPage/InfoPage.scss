@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+#infoPageContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    margin-top: 12.5vh;
+    height: 87.5vh;
+    & #logoInInfo{
+        width: 46.7%;
+        margin-top: .8vh;
+        height: 44px;
+    }
+    & p{
+        width: 74%;
+        font: {
+            family: Raleway, sans-serif;
+            style: normal;
+            weight: normal;
+            size: 16px;
+        }
+        line-height: 120%;
+    }
+    & #p1{
+        margin-top: 10vh;
+        color: #E9995E;
+        font: {
+            weight: bold;
+            size: 20px;
+        }
+    }
+    & #p2{
+        margin-top: 5vh;
+    }
+    & #p3{
+        margin-top: 2.5vh;
+    }
+}

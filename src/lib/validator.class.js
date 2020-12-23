@@ -1,4 +1,4 @@
-import {MessageBox} from "../js/messageBox.class.js";
+//import {MessageBox} from "../js/messageBox.class.js";
 
 export class Validator
 {
@@ -8,17 +8,6 @@ export class Validator
         this.constraints    = constraints;
     }
 
-    LauchMessage(msg)
-    {
-        const cfg = {
-            "operation" : "Inform",
-            "btn1Caption" : "",
-            "btn2Caption" : ""
-        };
-        let message = new MessageBox(msg, cfg, null);
-        message.DoModal();
-    }
-
 	ValidateString(str, caption, strRegEx, empty = false) {
 		let constraints = {
 			"type" : "STRING",
@@ -26,32 +15,32 @@ export class Validator
 			"empty" : empty
 		};
 		//Checkout emptyness
-		if (!constraints.empty) {
+        if (!constraints.empty)
+        {
 			//Data must not be empty
-			if (str === "") {
-                this.LauchMessage(  [{
-                    "caption" : `Dato ${caption} vacío!`,
-                    "class" : "highText"
-                    }]);
-                return false;
-			}
-		} else {
-			return true;
-		}
+            if (str === "")
+            {
+                return {ret : false, caption : `Dato ${caption} vacío!`};
+			}//if
+        }//if
+        else
+        {
+			return {ret : true, caption : ""};
+		}//else
 
-		if (constraints.regex !== "") {
+        if (constraints.regex !== "")
+        {
 			//Validate through incoming regex
-			if (!constraints.regex.test(str)) {
-                this.LauchMessage(  [{
-                    "caption" : `Dato ${caption} no válido!`,
-                    "class" : "highText"
-                }]);
-				return false;
-			}
-		} else {
+            if (!constraints.regex.test(str))
+            {
+                return {ret : false, caption : `Dato ${caption} no válido!`};
+			}//if
+        }//if
+        else
+        {
 			//Validate through predefined regex
-		}
-		return true;
+		}//else
+		return {ret : true, caption : ""};
 	}
 
     ValidateEmail(strEmail, empty = false) {
@@ -62,35 +51,34 @@ export class Validator
         };
 
         //Checkout emptyness
-        if (!constraints.empty) {
+        if (!constraints.empty)
+        {
             //Data must not be empty
-            if (strEmail === "") {
-                this.LauchMessage(  [{
-                                    "caption" : "Dirección de correo electrónico vacía!",
-                                    "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
-            return true;
-        }
+            if (strEmail === "")
+            {
+                return {ret : false, caption : "Dirección de correo electrónico vacía!"};
+            }//if
+        }//if
+        else
+        {
+            return {ret : true, caption : ""};
+        }//else
 
-        if (constraints.regex !== "") {
+        if (constraints.regex !== "")
+        {
             //Validate through incoming regex
-        } else {
+        }//if
+        else
+        {
             //Validate through predefined regex
+            // eslint-disable-next-line no-useless-escape
             const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
             if (!re.test(strEmail))
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Dirección de correo electrónico no válida!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        }
-        return true;
+                return {ret : false, caption : "Dirección de correo electrónico no válida!"};
+            }//if
+        }//else
+        return {ret : true, caption : ""};
     }
 
     ValidatePassword(strPass, strRegEx, empty = false) {
@@ -101,33 +89,32 @@ export class Validator
         };
 
         //Checkout emptyness
-        if (!constraints.empty) {
+        if (!constraints.empty)
+        {
             //Data must not be empty
-            if (strPass === "") {
-                this.LauchMessage(  [{
-                                        "caption" : "Contraseña vacía!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
-            return true;
-        }
+            if (strPass === "")
+            {
+                return {ret : false, caption : "Contraseña vacía!"};
+            }//if
+        }//if
+        else
+        {
+            return {ret : true, caption : ""};
+        }//else
 
-        if (constraints.regex !== "") {
+        if (constraints.regex !== "")
+        {
             //Validate through incoming regex
             if (!constraints.regex.test(strPass))
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Contraseña no válida!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
+                return {ret : false, caption : "Contraseña no válida!"};
+            }//if
+        }//if
+        else
+        {
             //Validate through predefined regex
-        }
-        return true;
+        }//else
+        return {ret : true, caption : ""};
     }
 
     ValidateDate(strData, empty = false) {
@@ -142,35 +129,32 @@ export class Validator
         };
 
         //Checkout emptyness
-        if (!constraints.empty) {
+        if (!constraints.empty)
+        {
             //Data must not be empty
-            if (strData === "") {
-                this.LauchMessage(  [{
-                                        "caption" : "Fecha de nacimiento vacía!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
-            return true;
-        }
+            if (strData === "")
+            {
+                return {ret : false, caption : "Fecha de nacimiento vacía!"};
+            }//if
+        }//if
+        else
+        {
+            return {ret : true, caption : ""};
+        }//else
 
         if (constraints.regex !== "")
         {
             //Validate through incoming regex
-        } else {
+        }//if
+        else
+        {
             //Validate through predefined regex
             const re = /(19\d\d|20([0-4]\d|50))-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/;
-
             if (!re.test(strData))
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Fecha inválida! El formato ha de ser dd/mm/aaaa",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        }
+                return {ret : false, caption : "El formato ha de ser aaaa-mm-dd"};
+            }//if
+        }//else
 
         //Check out upper limit
         if (constraints.date.upperLimit === "today")
@@ -185,7 +169,9 @@ export class Validator
             {
                 //Inserted birth year is higher than current so fails
                 inTheFuture = true;
-            } else {
+            }//if
+            else
+            {
                 if (parseInt(splitDate[0]) === todayYear)
                 {
                     //Inserted birth year is the same as current so further month checking is needed
@@ -193,7 +179,9 @@ export class Validator
                     {
                         //Inserted birth month is higher than current on the same year so fails
                         inTheFuture = true;
-                    } else {
+                    }//if
+                    else
+                    {
                         if (parseInt(splitDate[1]) === (todayMonth + 1))
                         {
                             //Inserted birth month is the same as current so further day checkint is needed
@@ -201,21 +189,16 @@ export class Validator
                             {
                                 //Inserted birth day is higher than current on the same year and month so fails
                                 inTheFuture = true;
-                            }
-                        }
-                    }
-                }
-                
-            }
+                            }//if
+                        }//if
+                    }//else
+                }//if
+            }//else
             if (inTheFuture)
             {   
-                this.LauchMessage(  [{
-                                        "caption" : "La fecha introducida es del futuro!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        }
+                return {ret : false, caption : "La fecha introducida es del futuro!"};
+            }//if
+        }//if
 
         //Check out any additional condition
         if (constraints.callback !== undefined)
@@ -223,11 +206,10 @@ export class Validator
             const callbackRet = constraints.callback(strData);
             if (!callbackRet.result)
             {
-                this.LauchMessage(callbackRet.msg);
-                return false;
-            }
+                return {ret : false, caption : ""};
+            }//if
         }
-        return true;
+        return {ret : true, caption : ""};
     }
 
     ValidateNIF(strNIF, empty = false) {
@@ -238,34 +220,32 @@ export class Validator
         };
 
         //Checkout emptyness
-        if (!constraints.empty) {
+        if (!constraints.empty)
+        {
             //Data must not be empty
-            if (strNIF === "") {
-                this.LauchMessage(  [{
-                                        "caption" : "Documento de identificación vacío!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
-            return true;
-        }
+            if (strNIF === "")
+            {
+                return {ret : false, caption : "Documento de identificación vacío!"};
+            }//if
+        }//if
+        else
+        {
+            return {ret : true, caption : ""};
+        }//else
 
         if (constraints.regex !== "")
         {
             //Validate through incoming regex
-        } else {
+        }//if
+        else
+        {
             //Validate through predefined regex
             const re = /(([XYZ\d])\d{7})([A-HJ-NP-TV-Z])/;
             
             if (!re.test(strNIF))
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Documento de identificación no válido!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
+                return {ret : false, caption : "Documento de identificación no válido!"};
+            }//if
 
             //Formula validation
             let num = undefined;
@@ -291,17 +271,13 @@ export class Validator
                         num = parseInt(strNIF.substring(0,8));
                         break;
                     }
-            }
+            }//switch
             if ("TRWAGMYFPDXBNJZSQVHLCKE"[num % 23] !== strNIF[8])
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Documento de identificación erróneo!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
+                return {ret : false, caption : "Documento de identificación erróneo!"};
+            }//if
         }
-        return true;
+        return {ret : true, caption : ""};
     }
 
     ValidatePhone(strPhone, strRegEx, empty = false)
@@ -313,17 +289,17 @@ export class Validator
         };
 
         //Checkout emptyness
-        if (!constraints.empty) {
+        if (!constraints.empty)
+        {
             //Data must not be empty
-            if (strPhone === "") {
-                this.LauchMessage(  [{
-                                        "caption" : "Teléfono vacío!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
-            return true;
+            if (strPhone === "")
+            {
+                return {ret : false, caption : "Teléfono vacío!"};
+            }//if
+        }//if
+        else
+        {
+            return {ret : true, caption : ""};
         }
 
         if (constraints.regex !== "")
@@ -331,28 +307,22 @@ export class Validator
             //Validate through incoming regex
             if (!constraints.regex.test(strPhone))
             {
-                this.LauchMessage(  [{
-                                        "caption" : "Número de teléfono no válido!",
-                                        "class" : "highText"
-                                    }]);
-                return false;
-            }
-        } else {
+                return {ret : false, caption : "Número de teléfono no válido!"};
+            }//if
+        }//if
+        else
+        {
             //Validate through predefined regex
-        }
-        return true;
+        }//else
+        return {ret : true, caption : ""};
     }
 
     ValidateOption(strOption, arrayOptions)
     {
         if (arrayOptions.filter(option => option === strOption).length === 0)
         {
-            this.LauchMessage(  [{
-                                    "caption" : "Opción de valor incorrecto!",
-                                    "class" : "highText"
-                                }]);
-            return false;
-        }
-        return true;
+            return {ret : false, caption : "Opción de valor incorrecto!"};
+        }//if
+        return {ret : true, caption : ""};
     }
 };

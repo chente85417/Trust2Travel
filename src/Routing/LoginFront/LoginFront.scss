@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+#loginFrontContainer{
+    position: absolute;
+    width: 100%;
+    height: 87.5vh;
+    margin-top: 12.5vh;
+    background-image: url("../../assets/bkg-loginFront.png");
+    & #controlsContainer{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        width: 88.9%;
+        height: 50vh;
+        margin: auto;
+        margin-top: 21.25vh;
+        border-radius: 1.25vh;
+        background-color: white;
+        & #closeContainer{
+            position: absolute;
+            top: 1vh;
+            right: 1vh;
+        }
+        & #caption{
+            width: 100%;
+            margin-top: 3.75vh;
+            margin-bottom: 0px;
+            font: {
+                family: Raleway, sans-serif;
+                style: normal;
+                weight: 500;
+                size: 16px;
+            }
+            line-height: 19px;
+            text-align: center;
+            color: #404040;
+        }
+        & #buttonRegisterContainer{
+            margin-top: 5.16vh;
+            & a{
+                display: flex;
+                & p{
+                    margin-bottom: 0px;
+                    align-self: center;
+                    font: {
+                        family: Raleway, sans-serif;
+                        style: normal;
+                        weight: 600;
+                        size: 14px;
+                    }
+                    line-height: 120%;
+                    color: #FFFFFF;
+                }
+            }
+        }
+        & #separatorContainer{
+            display: flex;
+            width: 56.25%;
+            margin-top: 1.6vh;
+            & .line{
+                align-self: center;
+                width: 45%;
+                height: 0px;
+                border-bottom: 1px solid black;
+            }
+            & #o{
+                padding: 0px 3px;
+                font: {
+                    family: Merriweather, serif;
+                    style: normal;
+                    weight: normal;
+                    size: 16px;
+                }
+                line-height: 20px;
+                color: #404040;
+            }
+        }
+        & #buttonLoginGoogleContainer{
+            margin-top: 1.6vh;
+            & #innerContainerGoogle{
+                width: 62%;
+            }
+        }
+        & #buttonLoginFacebookContainer{
+            margin-top: 2.4vh;
+            & #innerContainerFacebook{
+                width: 64%;
+            }
+        }
+        & #buttonLoginGoogleContainer, #buttonLoginFacebookContainer{           
+            & p{
+                margin-bottom: 0px;
+                align-self: center;
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: 600;
+                    size: 14px;
+                }
+                line-height: 120%;
+                color: #FFFFFF;
+            }
+        }
+        & #loginContainer{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 87.5%;
+            margin-top: 6.8vh;
+            font: {
+                family: Raleway, sans-serif;
+                style: normal;
+                weight: normal;
+                size: 12px;
+            }
+            line-height: 120%;
+            color: #404040;
+            & p{
+                width: 44%;
+                margin-bottom: 0px;
+            }
+            & a{
+                width: 30%;
+                color: #E9995E;
+            }
+        }
+        & .innerContainer{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 58%;
+            margin: auto;
+            & div{
+                height: 5.625vh;
+                display: flex;
+                & img{
+                    align-self: center;
+                }
+            }
+        }
+        & .button{
+            width: 87.5%;
+            height: 5.625vh;
+            background-color: #2C5337;
+            border-radius: 1.875vh;
+            cursor: pointer;
+        }
+    }
+}

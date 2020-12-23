@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+::placeholder{
+    color: rgba(0, 0, 0, 1);
+}
+
+#formLoginContainer{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    margin-top: 12.5vh;
+    height: 87.5vh;
+    & #backContainer{
+        position: absolute;
+        top: 2vh;
+        left: 4.44%;
+    }
+    & #logoInFormLogin{
+        width: 46.7%;
+        margin-top: .8vh;
+        height: 44px;
+    }
+    & #groupEmail, #groupPass{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 87.5%;
+        height: 48px;
+        background-color: rgba(227, 227, 227, 0.77);
+        border-radius: 4px 4px 0px 0px;
+    }
+    & #groupEmail{
+        margin-top: 7.39vh;
+    }
+    & #groupPass{
+        margin-top: 3.52vh;
+        & #passUser{
+            width: 85%;
+        }
+    }
+    & .editElements{
+        width: 90%;
+        height: 46px;
+        border: none;
+        outline: none;
+        font: {
+            family: Raleway, sans-serif;
+            style: normal;
+            weight: normal;
+            size: 16px;
+        }
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        color: rgba(0, 0, 0, 0.6);
+        mix-blend-mode: normal;
+        background-color: rgba(227, 227, 227, 0);
+    }
+    & #textResetPass{
+        margin-top: 3.52vh;
+        font: {
+            family: Raleway, sans-serif;
+            style: normal;
+            weight: normal;
+            size: 16px;
+        }
+        line-height: 120%;
+        color: #E9995E;
+    }
+    & .button{
+        width: 81.22%;
+        height: 36px;
+        margin-top: 22.71vh;
+        background-color: #2C5337;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font: {
+            family: Raleway, sans-serif;
+            style: normal;
+            weight: 600;
+            size: 14px;
+        }
+        line-height: 120%;
+        color: #FFFFFF;
+    }
+}
+

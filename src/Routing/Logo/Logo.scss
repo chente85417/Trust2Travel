@@ -1,0 +1,9 @@
+#logoContainer{
+    display: flex;
+    justify-content: center;
+    & #App-logo {
+      width: 75%;
+      margin-top: 40vh;
+      pointer-events: none;
+    }
+  }
