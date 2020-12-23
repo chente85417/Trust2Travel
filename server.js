@@ -167,7 +167,7 @@ const createGoogleOAuth = () => {
         GOOGLE_CLIENT_ID,
         GOOGLE_CLIENT_SECRET,
         //This is the url Google will call once the permissions are granted
-        `${process.env.URLBACK}/login/Google`
+        `${process.env.URLBACK}login/Google`
         //"http://localhost:8888/login/Google"
     );
 };//createGoogleOAuth
@@ -307,7 +307,7 @@ serverObj.post("/register", (req, res) => {
                                                                                 subject: "Confirmación del proceso de registro",
                                                                                 text: "",
                                                                                 html: `<p>Este correo ha sido enviado desde trust2travel para confirmar el proceso de registro</p>
-                                                                                <p>Haga click en <a href='${process.env.URLBACK}/confirm/${hashConfirm}'>este enlace</a> para aceptar el registro y será conducido a la aplicación</p>`,
+                                                                                <p>Haga click en <a href='${process.env.URLBACK}confirm/${hashConfirm}'>este enlace</a> para aceptar el registro y será conducido a la aplicación</p>`,
                                                                                 });
                                                                                 //console.log("Message sent: ", info.messageId);
                                                                             }
@@ -315,7 +315,7 @@ serverObj.post("/register", (req, res) => {
                                                                             console.log("Eliminación de conexión con BD tras finalizar la operación con éxito");
                                                                             connectionDB.end();
                                                                             //ESTA LLAMADA DE REDIRECCIONAMIENTO FUNCIONA
-                                                                            res.send({"ret" : true, "caption" : `${process.env.URLFRONT}/infoPage/register`});
+                                                                            res.send({"ret" : true, "caption" : `${process.env.URLFRONT}infoPage/register`});
                                                                             //ESTA LLAMADA DE REDIRECCIONAMIENTO NO CRUZA POR FALLO DE CORS
                                                                             //res.redirect(`${process.env.URLFRONT}infoPage`);
                                                                         }//else
@@ -390,7 +390,7 @@ serverObj.get("/confirm/:Token", (req, res) => {
                             {
                                 connectionDB.end();
                                 //TODO: ACTUALIZADA CONFIRMACIÓN --> REDIRECCIÓN AL LOGIN
-                                res.redirect(`${process.env.URLFRONT}/login/confirm`);
+                                res.redirect(`${process.env.URLFRONT}login/confirm`);
                             }//else if
                         });
                 }
@@ -489,7 +489,7 @@ serverObj.post("/login", (req, res) => {
                                                                 connectionDB.end();
                                                                 //Send JWT to the browser
                                                                 res.cookie("JWT", jwt, {"httpOnly" : true})
-                                                                .redirect(`${process.env.URLFRONT}/revista`);
+                                                                .redirect(`${process.env.URLFRONT}revista`);
                                                             }//else if
                                                             else
                                                             {
@@ -713,15 +713,15 @@ serverObj.post("/checkEmail", (req, res) => {
                                                 to: req.body.email,
                                                 subject: "Cambio de contraseña para trust2travel",
                                                 text: "Por favor, acuda al siguiente link para generar una nueva contraseña:",
-                                                html: `<a href='${process.env.URLBACK}/resetPass/${hash}'>cambiar contraseña</a>`,
+                                                html: `<a href='${process.env.URLBACK}resetPass/${hash}'>cambiar contraseña</a>`,
                                                 });
                                                 //console.log("Message sent: ", info.messageId);
                                             }
                                             main().catch(console.error);
                                             //ESTA LLAMADA DE REDIRECCIONAMIENTO FUNCIONA
-                                            res.send({"ret" : true, "caption" : `${process.env.URLFRONT}/infoPage/reset`});
+                                            res.send({"ret" : true, "caption" : `${process.env.URLFRONT}infoPage/reset`});
                                             //ESTA LLAMADA DE REDIRECCIONAMIENTO NO CRUZA POR FALLO DE CORS
-                                            //res.redirect(`${process.env.URLFRONT}/infoPage`);
+                                            //res.redirect(`${process.env.URLFRONT}infoPage`);
                                         }//else if
                                     });
                                 })
@@ -781,7 +781,7 @@ serverObj.get("/resetPass/:Token", (req, res) => {
                         connectionDB.end();
                         //Found token in DB --> Redirect to password reset
                         res.cookie("usrchpassToken", emailToken)
-                        .redirect(`${process.env.URLFRONT}/newPass`);
+                        .redirect(`${process.env.URLFRONT}newPass`);
                     }//else if
                     else
                     {
@@ -892,7 +892,7 @@ serverObj.post("/updatePass", (req, res) => {
                                                                     connectionDB.end();
                                                                     //Transaction committed
                                                                     //Password updated so inform
-                                                                    res.send({"ret" : true, "caption" : `${process.env.URLBACK}/login`});
+                                                                    res.send({"ret" : true, "caption" : `${process.env.URLBACK}login`});
                                                                 }//else
                                                             });//commit
                                                         }//else

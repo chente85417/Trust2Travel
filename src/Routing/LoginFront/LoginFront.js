@@ -14,7 +14,7 @@ import './LoginFront.scss';
 class LoginFront extends Component
 {
     OnClickedLoginGoogle = () => {
-        fetch(`${process.env.REACT_APP_URLBACK}/loginGoogle`)
+        fetch(`${process.env.REACT_APP_URLBACK}loginGoogle`)
         .then(res => {
             console.log(res.status);
             if (res.redirected)

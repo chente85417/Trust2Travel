@@ -66,7 +66,7 @@ class ResetPass extends Component
         const resetPassEmailData = {
                 "email" : event.target.userEmail.value
         };
-        fetch(`${process.env.REACT_APP_URLBACK}/checkEmail`, {
+        fetch(`${process.env.REACT_APP_URLBACK}checkEmail`, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
