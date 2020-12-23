@@ -110,7 +110,7 @@ class FormRegister extends Component
                 "password" : event.target.passUser.value
         };
         //TODO: LANZAR LA LLAMADA AL END POINT PARA REGISTRAR AL NUEVO USUARIO
-        fetch(`${process.env.REACT_APP_URLBACK}register`, {
+        fetch(`${process.env.REACT_APP_URLBACK}/register`, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
