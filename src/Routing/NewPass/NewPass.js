@@ -120,7 +120,7 @@ class NewPass extends Component
             "password" : event.target.newPassUser.value,
             "token" : token
         };
-        fetch("http://localhost:8888/updatePass", {
+        fetch(`${process.env.REACT_APP_URLBACK}updatePass`, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
