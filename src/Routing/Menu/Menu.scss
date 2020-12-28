@@ -1,0 +1,15 @@
+
+#menuContainer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 8.75vh;
+    background-color: #494949;
+    & ul{
+        padding: 0px;
+        margin: 0px;
+    }
+    & li{
+        display: inline-block;
+    }
+}

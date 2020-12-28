@@ -136,7 +136,7 @@ export class FormRegister{
 
         //GENDER
         //Retrieve data
-        const genderUser = document.querySelector("#Hombre").value;
+        const genderUser = document.querySelectorAll("input[name=gender]:checked")[0].value;
         if (!validator.ValidateOption(genderUser, ["Hombre", "Mujer", "Otro"]))
             return;
 

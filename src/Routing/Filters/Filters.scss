@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 12.5vh;
+
+#filtersBkg{
+    position: absolute;
+    top: calc(-51.25vh + #{$upper-margin});
+    left: -5.55vw;
+    width: 100vw;
+    height: calc(100vh - #{$upper-margin});
+    z-index: 19;
+    background-color: rgba(23, 23, 23, 0.4);
+    & #filtersContainer{
+        position: absolute;
+        right: 0px;
+        z-index: 20;
+        width: 85.4vw;
+        height: calc(100vh - #{$upper-margin});
+        background-color: white;
+        & #filtersControls{
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: flex-start;
+            margin-top: calc(12.5vh - #{$upper-margin});
+            & p{
+                margin-bottom: 0px;
+                background-color: white;
+            }
+            & label{
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: normal;
+                    size: 14px;
+                }
+                line-height: 130%;
+                color: #404040;
+            }
+            & .itemText{
+                margin-left: 14%;
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: normal;
+                    size: 12px;
+                }
+                line-height: 130%;
+                color: #959595;
+            }
+            & #closeContainer{
+                position: absolute;
+                top: 2vh;
+                left: 2.81vh;
+                cursor: pointer;
+                & img{
+                    width: 3.75vh;
+                }
+            }
+            & #caption{
+                margin-top: 2.187vh;
+                font: {
+                    family: Merriweather, serif;
+                    style: normal;
+                    weight: bold;
+                    size: 16px;
+                }
+                line-height: 20px;
+                text-align: center;
+                color: #404040;
+            }
+            & #explanation{
+                width: 84.21%;
+                margin-top: 5.31vh;
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: normal;
+                    size: 14px;
+                }
+                line-height: 130%;
+                color: #000000;
+            }
+            & .itemContainer{
+                width: 83.22%;
+                height: 10.937vh;
+                &:nth-child(4), &:nth-child(5), &:nth-child(6){
+                    margin-top: 2.969vh;
+                }
+                &>div{
+                    display: flex;
+                    margin-bottom: 1vh;
+                    align-items: center;
+                }
+                & input{
+                    width: 2.813vh;
+                    height: 2.813vh;
+                    background-color:#DADADA;
+                }
+                & label{
+                    margin-left: 4.35%;
+                    margin-bottom: 0px;
+                }
+            }
+            & #clean{
+                margin-top: 5.312vh;
+                margin-right: auto;
+                margin-left: 8.88%;
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: bold;
+                    size: 14px;
+                }
+                line-height: 120%;
+                text-align: right;
+                text-decoration-line: underline;
+                color: #404040;
+                cursor: pointer;
+            }
+            & button{
+                width: 92.1%;
+                height: 5.625vh;
+                margin-top: 11.4vh;
+                border-radius: 1.875vh;
+                cursor: pointer;
+                font: {
+                    family: Raleway, sans-serif;
+                    style: normal;
+                    weight: 600;
+                    size: 14px;
+                }
+                line-height: 120%;
+                color: #FFFFFF;
+                background-color: #2C5337;
+            }
+        }
+    }
+}

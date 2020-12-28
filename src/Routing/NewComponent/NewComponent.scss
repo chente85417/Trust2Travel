@@ -1,8 +1,11 @@
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
 #xxContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    margin-top: 14.08vh;
-    height: 85.92vh;
+    height: calc(100vh - #{$upper-margin});
+    margin-top: #{$upper-margin};
 }

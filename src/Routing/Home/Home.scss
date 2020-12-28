@@ -1,9 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 12.5vh;
+
 #homeContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    margin-top: 14.08vh;
-    height: 85.92vh;
-    background-color: blueviolet;
+    height: calc(100vh - #{$upper-margin});
+    margin-top: #{$upper-margin};
+    & #logoInHome{
+        position: absolute;
+        width: 46.7%;
+        margin-top: calc(13.75vh - #{$upper-margin});
+        height: 5vh;
+        z-index: 10;
+    }
+    & #frontImage{
+        position: relative;
+        width: 100%;
+        height: calc(55vh - #{$upper-margin});
+        background-image: url("../../assets/fondo-home.png");
+        background-size: cover;
+        border-radius: 0px 0px 3.75vh 3.75vh;
+        & p{
+            position: absolute;
+            width: 68.33%;
+            height: 11.25vh;
+            top: calc(25vh - #{$upper-margin});
+            left: 10.55%;
+            font: {
+                family: Raleway, sans-serif;
+                style: normal;
+                weight: 900;
+                size: 32px;
+            }
+            line-height: 36px;
+            color: #2C5337;
+        }
+    }
+    & #smallCardsViewerCaption{
+        margin-top: 6.875vh;
+        margin-left: 8.89%;
+        margin-right: auto;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 20px;
+        }
+        line-height: 16px;
+        letter-spacing: 0.4px;
+        color: #464646;
+    }
+    & #smallCardsViewer{
+        width: 1000px;
+        height: 26.25vh;
+        margin-left: 5.55%;
+        overflow-x: scroll;
+        background-color: blueviolet;
+    }
 }

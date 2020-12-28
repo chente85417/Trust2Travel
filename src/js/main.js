@@ -6,7 +6,7 @@ import {MessageBox} from './messageBox.class.js';
 const formRegisterCallback = (ret, callbackData) => {
     if (ret)
     {
-        fetch("http://localhost:8888/register", {
+        fetch("http://localhost:8000/register", {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
@@ -39,6 +39,10 @@ const formRegisterCallback = (ret, callbackData) => {
                 case 1:
                     {
                         document.querySelector("#loginContainer").className = "";
+                        break;
+                    }
+                default:
+                    {
                         break;
                     }
             }//switch
@@ -53,7 +57,7 @@ const formRegisterCallback = (ret, callbackData) => {
 const formLoginCallback = (ret, callbackData) => {
     if (ret)
     {
-        fetch("http://localhost:8888/login", {
+        fetch("http://localhost:8000/login", {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
@@ -86,6 +90,10 @@ const formLoginCallback = (ret, callbackData) => {
                     {
                         break;
                     }
+                default:
+                    {
+                        break;
+                    }
             }//switch
         });
     }
@@ -96,7 +104,15 @@ const formLoginCallback = (ret, callbackData) => {
 }//formLoginCallback
 
 const oauthCallback = (oauthData) => {
-    fetch(`http://localhost:8888/login${oauthData.provider}`);
+    fetch(`http://localhost:8000/login${oauthData.provider}`)
+        .then(res => {
+            console.log(res.status);
+            if (res.redirected)
+            {
+                console.log(res.url);
+                window.location(res.url);
+            }//if
+        });
 }//oauthCallback
 
 //--------------------EVENT LISTENERS--------------------//
