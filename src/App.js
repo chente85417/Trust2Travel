@@ -10,6 +10,7 @@ import Home from './Routing/Home/Home.js';
 import InfoPage from './Routing/InfoPage/InfoPage.js';
 import ResetPass from './Routing/ResetPass/ResetPass.js';
 import NewPass from './Routing/NewPass/NewPass.js';
+import Loading from './Routing/Loading/Loading.js';
 //----------------------ASSETS----------------------//
 
 //----------------------STYLES----------------------//
@@ -23,7 +24,8 @@ class App extends Component
     this.state = {  loadPage : "/", comp : <Logo />,
                     viewLogin: false,
                     user: 1,
-                    infoTexts : ["1", "2", "3"] };
+                    infoTexts : ["1", "2", "3"],
+                    homeData : undefined };
     this.arrayTextsRegister = [
       "Gracias por registrarse!",
       "Se ha enviado un link de confirmación a su cuenta de correo electrónico.",
@@ -37,6 +39,28 @@ class App extends Component
   setInfoTexts = (arrayTexts) => {
     this.setState({infoTexts : [arrayTexts[0], arrayTexts[1], arrayTexts[2]]});
   }//setInfoTexts
+
+  componentDidMount(){
+    if (this.state.homeData === undefined)
+    {
+      console.log("tratamos de obtener los datos para el home");
+      fetch(`${process.env.REACT_APP_URLBACK}getCertificatesBasics`)
+      .then(res => res.json()).then(data => {
+         if (data.ret)
+         {
+             console.log("desde el didmount de App.js ", data.caption);
+             this.setState({homeData : data.caption});
+         }//if
+         /*
+         else
+         {
+             this.messageBoxCfg = {title : "Error", body : data.caption};
+             this.setState({showMessage : true});
+         }//else
+         */
+     });
+    }//if
+  }
 
   render()
   {
@@ -63,7 +87,7 @@ class App extends Component
               {<FormLogin confirm = {false} />}
             </Route>
             <Route path="/home">
-              {<Home />}
+              {this.state.homeData !== undefined ? <Home initData = {this.state.homeData} /> : <Loading />} 
             </Route>
             <Route exact path="/infoPage/register">
               {<InfoPage text1 = {this.arrayTextsRegister[0]} text2 = {this.arrayTextsRegister[1]} text3 = {this.arrayTextsRegister[2]} />}

@@ -19,24 +19,34 @@ class Menu extends Component
         this.state = {
             buttonsState : [true, false, false, false]
         };
+        this.arrayIconsLight    = [iconHomeLight, iconFavLight, iconCertificatesLight, iconProfileLight];
+        this.arrayIcons         = [iconHome, iconFav, iconCertificates, iconProfile];
     }
+
+    OnClickedMenuItem = (event, index) => {
+        event.preventDefault();
+        this.setState({
+            buttonsState : [
+                index === 0 ? true : false,
+                index === 1 ? true : false,
+                index === 2 ? true : false,
+                index === 3 ? true : false
+            ]
+        });
+        this.props.callback(index);
+    };//OnClickedMenuItem
+
     render()
     {
         return (
             <div id = "menuContainer">
                 <ul>
-                    <li><img    src={this.state.buttonsState[0] ? iconHome : iconHomeLight}
-                                alt="icono de Home"/>
-                    </li>
-                    <li><img    src={this.state.buttonsState[1] ? iconFav : iconFavLight}
-                                alt="icono de Favoritos"/>
-                    </li>
-                    <li><img    src={this.state.buttonsState[2] ? iconCertificates : iconCertificatesLight}
-                                alt="icono de Certificados"/>
-                    </li>
-                    <li><img    src={this.state.buttonsState[3] ? iconProfile : iconProfileLight}
-                                alt="icono de Perfil"/>
-                    </li>
+                    {this.state.buttonsState.map((button, index) => 
+                        <li key = {index} onClick = {event => this.OnClickedMenuItem(event, index)}>
+                            <img    src={button ? this.arrayIcons[index] : this.arrayIconsLight[index]}
+                                    alt="icono de Menú" />
+                        </li>
+                    )}
                 </ul>
             </div>
         );

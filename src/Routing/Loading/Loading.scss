@@ -1,0 +1,8 @@
+#loadingContainer{
+    display: flex;
+    justify-content: center;
+    background-color: #FFFFFF00;
+    & #spinner{
+      margin-top: 45vh;
+    }
+  }
