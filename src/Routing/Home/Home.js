@@ -4,6 +4,7 @@ import Seeker from '../Seeker/Seeker.js';
 import Certificates from '../Certificates/Certificates.js';
 import Menu from '../Menu/Menu.js';
 import SmallCard from '../SmallCard/SmallCard.js';
+import Loading from '../Loading/Loading.js';
 //----------------------ASSETS----------------------//
 import logo from '../../assets/t2t-Logo.svg';
 //----------------------STYLES----------------------//
@@ -15,7 +16,8 @@ class Home extends Component
         super(props);
         this.state = {
             arrayShowMenuItems : [true, false, false, false],
-            showResults : false
+            showResults : false,
+            searching : false
         };
         this.currentResults = undefined;
         this.searchData = {
@@ -38,6 +40,7 @@ class Home extends Component
     }//componentDidMount
 
     LaunchSearch = (searchData) => {
+        this.setState({searching : true});
         this.searchData = searchData;
         fetch(`${process.env.REACT_APP_URLBACK}startSearch`, {
             method: 'POST',
@@ -62,7 +65,7 @@ class Home extends Component
                 this.currentResults = data.data;
                 let storageData = {search : this.searchData, recordset : data.data};
                 localStorage.setItem('currentHomeSearch', JSON.stringify(storageData));
-                this.setState({showResults : true});
+                this.setState({showResults : true, searching : false});
             }//else
         });        
     };//LaunchSearch
@@ -91,6 +94,7 @@ class Home extends Component
                 case 0://MAIN
                 {
                     return (<>
+                                {this.state.searching ? <Loading /> : <></>}
                                 <img id="logoInHome" src={logo} alt="logo de Trust2Travel"/>
                                 <div id="frontImage">
                                     <p>Viaja local y consciente</p>

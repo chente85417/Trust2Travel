@@ -12,6 +12,20 @@ $upper-margin: 0vh;
     align-content: flex-start;
     height: calc(100vh - #{$upper-margin});
     margin-top: #{$upper-margin};
+    & > #loadingContainer:first-child{
+        position: absolute;
+        width: 100vw;
+        height: 10vh;
+        text-align: center;
+        z-index: 200;
+        & #spinner{
+            margin-top: 52.5vh;
+        }
+    }
+    & #loadingContainer:nth-child(3){
+        width: 100%;
+        text-align: center;
+    }
     & #logoInHome{
         position: absolute;
         width: 46.7%;

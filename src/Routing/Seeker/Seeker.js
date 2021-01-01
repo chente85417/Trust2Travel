@@ -141,6 +141,7 @@ class Seeker extends Component
     {
         return(
             <>
+                {/* <Loading /> */}
                 {this.state.initialized ? this.InsertComponents() : <Loading />}
             </>
         );

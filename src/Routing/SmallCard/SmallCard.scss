@@ -15,9 +15,6 @@ $upper-margin: 0vh;
     border-radius: 1.875vh;
     -webkit-box-shadow: 5px 5px 11px -11px #000000; 
     box-shadow: 5px 5px 11px -11px #000000;
-    & #loadingContainer #spinner{
-        margin-top: 25vh;
-    }
     & p{
         margin: 0%;
     }
@@ -99,5 +96,8 @@ $upper-margin: 0vh;
         letter-spacing: 0.75px;
         text-transform: uppercase;
         color: #2C5337;
+    }
+    &:last-child{
+        margin-bottom: 9vh;
     }
 }

@@ -93,6 +93,7 @@ class Details extends Component
     {
         return (
             <div id = "detailsContainer">
+                {/* <Loading /> */}
                 {this.state.loadedData ? this.InsertComponents() : <Loading />}
             </div>
         );
