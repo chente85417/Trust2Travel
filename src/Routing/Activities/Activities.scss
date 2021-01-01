@@ -1,0 +1,25 @@
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
+#activitiesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    height: 24.375vh;
+    margin-top: 3.125vh;
+    margin-left: 6.67%;
+    & #caption{
+        width: 86.67%;
+        text-align: left;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 14px;
+        }
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: #404040;
+    }
+}

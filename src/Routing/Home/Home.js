@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Seeker from '../Seeker/Seeker.js';
 import Certificates from '../Certificates/Certificates.js';
 import Menu from '../Menu/Menu.js';
+import SmallCard from '../SmallCard/SmallCard.js';
 //----------------------ASSETS----------------------//
 import logo from '../../assets/t2t-Logo.svg';
 //----------------------STYLES----------------------//
@@ -13,18 +14,32 @@ class Home extends Component
     constructor(props){
         super(props);
         this.state = {
-            arrayShowMenuItems : [true, false, false, false]
+            arrayShowMenuItems : [true, false, false, false],
+            showResults : false
+        };
+        this.currentResults = undefined;
+        this.searchData = {
+            provincia : "",
+            comunidad : "",
+            filtros : [false, false, false]
         };
     }
 
     componentDidMount(){
-        //Retrieve from DB all basic certificates data to pass them to certificates component
-        //Retrieved once reducing DB query stress
+        let storageValue = localStorage.getItem('currentHomeSearch');
+        if (storageValue !== null)
+        {
+            let aux = JSON.parse(storageValue);
+            this.currentResults = aux.recordset;
+            this.searchData = aux.search;
 
+            this.setState({showResults : true});
+        }//if       
     }//componentDidMount
 
     LaunchSearch = (searchData) => {
-        fetch(`${process.env.REACT_APP_URLBACK}search`, {
+        this.searchData = searchData;
+        fetch(`${process.env.REACT_APP_URLBACK}startSearch`, {
             method: 'POST',
             headers: {
                 'Access-Control-Allow-Origin' : '*',
@@ -34,7 +49,7 @@ class Home extends Component
             body: JSON.stringify(searchData)
             }
         ).then(res => res.json()).then(data => {
-            console.log(data);
+            //console.log(data);
             if (!data.ret)
             {
                 //INFORMAR DE QUE NO SE HA PODIDO COMPLETAR LA CONSULTA
@@ -44,6 +59,10 @@ class Home extends Component
             else
             {
                 //PINTAR LOS RESULTADOS
+                this.currentResults = data.data;
+                let storageData = {search : this.searchData, recordset : data.data};
+                localStorage.setItem('currentHomeSearch', JSON.stringify(storageData));
+                this.setState({showResults : true});
             }//else
         });        
     };//LaunchSearch
@@ -76,11 +95,9 @@ class Home extends Component
                                 <div id="frontImage">
                                     <p>Viaja local y consciente</p>
                                 </div>
-                                <Seeker callbackSearch = {this.LaunchSearch} />
-                                <p id="smallCardsViewerCaption">Cerca de tí</p>
-                                <div id="smallCardsViewer">
-                                    Contenedor de tarjetas por hacer con visualización horizontal corrida mediante scroll
-                                </div>
+                                <Seeker currentSearch = {this.searchData} callbackSearch = {this.LaunchSearch} />
+                                <p id="smallCardsViewerCaption">{this.state.showResults ? `Resultados - ${this.currentResults.length}` : "Cerca de tí"}</p>
+                                {this.state.showResults ? this.InsertResults() : <></>}
                             </>);
                 }
                 case 1://FAVOURITES
@@ -100,6 +117,15 @@ class Home extends Component
             }//switch
         }//if
     };//InsertMenuScreen
+
+    InsertResults = () => {
+        let arrayItems = this.currentResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
+        return (
+            <div id="smallCardsViewer">
+                {arrayItems}                  
+            </div>
+        );
+    };//InsertResults
 
     render()
     {

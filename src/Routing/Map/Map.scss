@@ -1,0 +1,35 @@
+//@import '~leaflet/dist/leaflet.css';
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
+#mapContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    width: 100%;
+    margin-top: 3.125vh;
+    & #caption{
+        width: 86.67%;
+        text-align: left;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 14px;
+        }
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: #404040;
+    }
+    & .leaflet-container{
+        width: 100%;
+        height: 28.125vh;
+        margin-top: 1.25vh;
+        /*& .leaflet-control-zoom-in, .leaflet-control-zoom-out{
+            width: 5.33vw;
+            height: 3vh;
+        }*/
+    }
+}

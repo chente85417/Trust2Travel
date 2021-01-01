@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //--------------------COMPONENTS--------------------//
 import Filters from '../Filters/Filters.js';
+import Loading from '../Loading/Loading.js';
 import ListGroup from 'react-bootstrap/ListGroup';
 //----------------------ASSETS----------------------//
 import iconFilter from '../../assets/icon-filter.svg';
@@ -14,12 +15,13 @@ class Seeker extends Component
         this.state = {
             showFilters : false,
             showLocationsList : false,
-            hasFilters : false
+            hasFilters : false,
+            initialized : false
         };
         this.initData = [];
         this.currentLocationsList = [];
         this.inputRef = React.createRef();
-        this.arraySelectedFilters = [false, false, false];
+        this.arraySelectedFilters = this.props.currentSearch.filtros;
         
     }
     onClickedFilters = () => {
@@ -44,6 +46,7 @@ class Seeker extends Component
             if (data.ret)
             {
                 this.initData = data.caption.map(item => item.RES);
+                this.setState({initialized : true});
                 //console.log(this.initData);
             }//if
             /*
@@ -94,6 +97,7 @@ class Seeker extends Component
 
     LocationClicked = (key) => {
         this.inputRef.current.value = key;
+        this.PrepareQuery();
         this.setState({showLocationsList : false});
     };//LocationClicked
 
@@ -114,8 +118,7 @@ class Seeker extends Component
         this.props.callbackSearch(searchData);
     };//PrepareQuery
 
-    render()
-    {
+    InsertComponents = () => {
         return (
             <form method = "GET" action = "" id = "seekerContainer" onSubmit={this.RequestQuery}>
                 {this.state.showFilters ? <Filters  arraySelectedFilters = {this.arraySelectedFilters}
@@ -123,7 +126,7 @@ class Seeker extends Component
                 <div id="textContainer">
                     <input  type="text" id="seekerText" name="seekerText" 
                             placeholder="¿A dónde quieres ir?" tabIndex="1" autoFocus={true}
-                            onChange = {this.OnChangeInput} ref = {this.inputRef} />
+                            onChange = {this.OnChangeInput} ref = {this.inputRef} defaultValue = {this.props.currentSearch.provincia}/>
                     {this.state.showLocationsList ? this.InsertList() : <></>}
                 </div>
                 <div id="filterContainer" onClick={this.onClickedFilters}>
@@ -131,6 +134,15 @@ class Seeker extends Component
                     {this.state.hasFilters ? <div id="activeFilters"></div> : <></>}
                 </div>
             </form>
+        );
+    };//InsertComponents
+
+    render()
+    {
+        return(
+            <>
+                {this.state.initialized ? this.InsertComponents() : <Loading />}
+            </>
         );
     }
 };

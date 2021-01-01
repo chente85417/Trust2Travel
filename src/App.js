@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
+//import DetailsContext from './Contexts/DetailsContext.js';
 //--------------------COMPONENTS--------------------//
 import Logo from './Routing/Logo/Logo.js';
 import LoginFront from './Routing/LoginFront/LoginFront.js';
@@ -7,6 +8,7 @@ import FormRegister from './Routing/FormRegister/FormRegister.js';
 import FormLogin from './Routing/FormLogin/FormLogin.js';
 import Onboarding from './Routing/Onboarding/Onboarding.js';
 import Home from './Routing/Home/Home.js';
+import Details from './Routing/Details/Details.js';
 import InfoPage from './Routing/InfoPage/InfoPage.js';
 import ResetPass from './Routing/ResetPass/ResetPass.js';
 import NewPass from './Routing/NewPass/NewPass.js';
@@ -25,7 +27,9 @@ class App extends Component
                     viewLogin: false,
                     user: 1,
                     infoTexts : ["1", "2", "3"],
-                    homeData : undefined };
+                    homeData : undefined
+                    /*currentDetailID : undefined*/
+                  };
     this.arrayTextsRegister = [
       "Gracias por registrarse!",
       "Se ha enviado un link de confirmación a su cuenta de correo electrónico.",
@@ -41,14 +45,15 @@ class App extends Component
   }//setInfoTexts
 
   componentDidMount(){
+    localStorage.removeItem('currentHomeSearch');
     if (this.state.homeData === undefined)
     {
-      console.log("tratamos de obtener los datos para el home");
+      //console.log("tratamos de obtener los datos para el home");
       fetch(`${process.env.REACT_APP_URLBACK}getCertificatesBasics`)
       .then(res => res.json()).then(data => {
          if (data.ret)
          {
-             console.log("desde el didmount de App.js ", data.caption);
+             //console.log("desde el didmount de App.js ", data.caption);
              this.setState({homeData : data.caption});
          }//if
          /*
@@ -61,9 +66,15 @@ class App extends Component
      });
     }//if
   }
-
+/*
+  SetALID = (id) => {
+    this.setState({currentDetailID : id});
+    <Redirect to="/details" />;
+  };//SetALID
+*/
   render()
   {
+    //localStorage.removeItem('currentHomeSearch');
     return (
       <div className="App">
         <Router>
@@ -87,7 +98,12 @@ class App extends Component
               {<FormLogin confirm = {false} />}
             </Route>
             <Route path="/home">
-              {this.state.homeData !== undefined ? <Home initData = {this.state.homeData} /> : <Loading />} 
+              {/* <DetailsContext.Provider value = {this.SetALID}> */}
+                {this.state.homeData !== undefined ? <Home initData = {this.state.homeData} /> : <Loading />} 
+              {/* </DetailsContext.Provider> */}
+            </Route>
+            <Route path="/details">
+              <Details />
             </Route>
             <Route exact path="/infoPage/register">
               {<InfoPage text1 = {this.arrayTextsRegister[0]} text2 = {this.arrayTextsRegister[1]} text3 = {this.arrayTextsRegister[2]} />}

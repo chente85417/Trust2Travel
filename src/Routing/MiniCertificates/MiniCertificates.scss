@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
+#miniCertificatesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 86.67%;
+    margin-top: 3.125vh;
+    & p{
+        margin: 0%;
+    }
+    & #caption{
+        width: 100%;
+        text-align: left;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 14px;
+        }
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: #404040;
+    }
+    & .certificateContainer{
+        display: flex;
+        flex-wrap: wrap;
+        height: 3.125vh;
+        background-color: #F8E3D3;
+        border-radius: 1.562vh;
+        padding: 0px 3%;
+        margin-top: 1.25vh;
+        margin-right: 1%;
+        & .logoContainer{
+            display: flex;
+            align-self: center;
+            & img{
+                align-self: center;
+                height: 2.5vh;
+            }
+        }
+        & p{
+            align-self: center;
+            font: {
+                family: Raleway;
+                style: normal;
+                weight: 500;
+                size: 11px;
+            }
+            line-height: 20px;
+            text-align: center;
+            letter-spacing: 0.25px;
+            color: #404040;
+        }
+    }
+}

@@ -5,6 +5,7 @@
 $upper-margin: 0vh;
 
 #homeContainer{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -56,10 +57,10 @@ $upper-margin: 0vh;
         color: #464646;
     }
     & #smallCardsViewer{
-        width: 1000px;
-        height: 26.25vh;
+        width: 90%;
+        /*height: 26.25vh;
         margin-left: 5.55%;
         overflow-x: scroll;
-        background-color: blueviolet;
+        background-color: blueviolet;*/
     }
 }
