@@ -2,13 +2,11 @@
 $upper-margin: 0vh;
 
 #activitiesContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
-    height: 24.375vh;
+    width: 100%;
     margin-top: 3.125vh;
-    margin-left: 6.67%;
+    & p{
+        margin: 0%;
+    }
     & #caption{
         width: 86.67%;
         text-align: left;
@@ -21,5 +19,85 @@ $upper-margin: 0vh;
         line-height: 16px;
         letter-spacing: 0.25px;
         color: #404040;
+    }
+    & #cardsContainer{
+        display: flex;
+        width: 100%;
+        overflow: auto;
+        & .cardActivity{
+            display: flex;
+            height: 25vh;
+            background-color:#FCFCFC;
+            border-radius: 12px;
+            margin-right: 2%;
+            & .image{
+                width: 40%;
+                height: 20vh;
+                & img{
+                    width: 100%;
+                    height: 20vh;
+                    object-fit: cover;
+                    border-radius: 12px;
+                }
+            }
+            & .dataContainer{
+                display: flex;
+                flex-wrap: wrap;
+                width: 60%;
+                & .name{
+                    width: 100%;
+                    height: 2.16vh;
+                    padding-left: 5%;
+                    margin-top: 4vh;
+                    font: {
+                        family: Raleway, sans-serif;
+                        style: normal;
+                        weight: 600;
+                        size: 12px;
+                    }
+                    line-height: 14px;
+                    color: #333333;
+                }
+                & .description{
+                    width: 100%;
+                    padding-left: 5%;
+                    margin-top: .6vh;
+                    font: {
+                        family: Raleway, sans-serif;
+                        style: normal;
+                        weight: normal;
+                        size: 11px;
+                    }
+                    line-height: 13px;
+                    color: #333333;
+                }
+                & .addressContainer{
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 100%;
+                    margin-top: 1.23vh;
+                    font: {
+                        family: Raleway, sans-serif;
+                        style: normal;
+                        weight: 600;
+                        size: 12px;
+                    }
+                    line-height: 14px;
+                    color: #404040;
+                    & .iconLocationContainer{
+                        align-self: center;
+                    }
+                    & .direction{
+                        width: 86.67%;
+                        margin-top: .75vh;
+                    }
+                    & .location{
+                        width: 86.67%;
+                        margin-top: .25vh;
+                        padding-left: 2.7vh;
+                    }
+                }
+            }
+        }
     }
 }

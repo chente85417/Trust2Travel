@@ -25,7 +25,6 @@ class Details extends Component
     componentDidMount = () => {
         fetch(`${process.env.REACT_APP_URLBACK}getEstablishmentDetails/${this.props.alID}`)
         .then(res => res.json()).then(data => {
-            console.log(data);
             if (!data.ret)
             {
                 //INFORMAR DE QUE NO SE HA PODIDO COMPLETAR LA CONSULTA
@@ -68,6 +67,7 @@ class Details extends Component
                     <p id="direction">{this.currentResults[0].DIRECCION}</p>
                 </div>
                 <div className="separator"></div>
+                <p id="infoDetails">{this.currentResults[0].DESCRIPCION}</p>
                 <div id="phoneContainer">
                     <p className="caption">Teléfono</p>
                     <p id="phone">{this.currentResults[0].TELEFONO}</p>
@@ -77,11 +77,11 @@ class Details extends Component
                     <p id="email">{this.currentResults[0].EMAIL}</p>
                 </div>
                 <div className="separator"></div>
-                <MiniCertificates alID = {this.props.alID} />
+                <MiniCertificates alID = {this.props.alID} caption = "Certificados"/>
                 <div className="separator"></div>
                 <Map name = {this.currentResults[0].NOMBRE} longitude = {this.currentResults[0].LONGITUD} latitude = {this.currentResults[0].LATITUD} />
                 <div className="separator"></div>
-                <Activities alID = {this.props.alID} />
+                <Activities location = {this.currentResults[0].PROVINCIA} />
                 <div id="footer">
                     <a href={this.currentResults[0].WEBSITE}>IR A LA WEB</a>
                 </div>

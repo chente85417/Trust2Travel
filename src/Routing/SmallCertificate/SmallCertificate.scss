@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
+.smallCertificateContainer{
+    display: flex;
+    flex-wrap: wrap;
+    height: 4vh;
+    background-color: #F8E3D3;
+    border-radius: 1.562vh;
+    padding: 0px 3%;
+    margin-top: .5vh;
+    margin-right: 1%;
+    & .logoContainer{
+        display: flex;
+        align-self: center;
+        & img{
+            align-self: center;
+            height: 2.5vh;
+        }
+    }
+    & .label{
+        display: flex;
+        padding-left: 7px;
+        height: 4vh;
+        & p{
+            align-self: center;
+            font: {
+                family: Raleway;
+                style: normal;
+                weight: 500;
+                size: 11px;
+            }
+            line-height: 20px;
+            text-align: center;
+            letter-spacing: 0.25px;
+            color: #404040;
+        }
+    }
+}
+#loadingContainer{
+    margin: auto;
+}

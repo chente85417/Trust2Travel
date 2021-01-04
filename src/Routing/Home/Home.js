@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import HomeContext from '../../Contexts/HomeContext.js';
 //--------------------COMPONENTS--------------------//
 import Seeker from '../Seeker/Seeker.js';
+import Favs from '../Favs/Favs.js';
 import Certificates from '../Certificates/Certificates.js';
 import Menu from '../Menu/Menu.js';
 import SmallCard from '../SmallCard/SmallCard.js';
@@ -19,12 +21,14 @@ class Home extends Component
             showResults : false,
             searching : false
         };
-        this.currentResults = undefined;
+        this.processedArrayResults = [];
         this.searchData = {
             provincia : "",
             comunidad : "",
             filtros : [false, false, false]
         };
+        this.user = "vagb.chente@gmail.com";
+        //this.user = "";
     }
 
     componentDidMount(){
@@ -61,8 +65,57 @@ class Home extends Component
             }//if
             else
             {
-                //PINTAR LOS RESULTADOS
-                this.currentResults = data.data;
+                //Process the results
+                this.processedArrayResults = [];
+                const categories = ["Gestión ambiental", "Eco-turismo", "Agro-turismo"];
+                let aux = [];
+                this.searchData.filtros.forEach((item, index) => {
+                    if (item)
+                    {
+                        aux.push(categories[index]);
+                    }//if
+                });
+                console.log(aux);
+                console.log(data.data);
+                let currentID = "";
+                let item = {
+                    ALID : undefined,
+                    NOMBRE : "",
+                    CERTS : [],
+                    CATEGORIAS : []
+                    };
+                for (let count = 0; count < data.data.length; ++count)
+                {
+                    if (currentID !== data.data[count].ALID)
+                    {
+                        if (currentID !== "")
+                        {
+                            this.processedArrayResults.push(item);
+                        }//if
+                        item = {    ALID : data.data[count].ALID,
+                                    NOMBRE : data.data[count].NOMBRE,
+                                    CERTS : [{  CERTID : data.data[count].CERTID,
+                                                ETIQUETA : data.data[count].ETIQUETA,
+                                                LOGO : data.data[count].LOGO}],
+                                    CATEGORIAS : aux
+                                };
+                        currentID = data.data[count].ALID;
+                    }//if
+                    else
+                    {
+                        item.CERTS.push(data.data[count].CERTID);
+                    }//else
+                }//for
+                if (currentID !== "")
+                {
+                    this.processedArrayResults.push(item);
+                }//if
+
+                console.log(this.processedArrayResults);
+
+
+                //this.currentResults = data.data;
+                //console.log(data.data);
                 let storageData = {search : this.searchData, recordset : data.data};
                 localStorage.setItem('currentHomeSearch', JSON.stringify(storageData));
                 this.setState({showResults : true, searching : false});
@@ -100,13 +153,15 @@ class Home extends Component
                                     <p>Viaja local y consciente</p>
                                 </div>
                                 <Seeker currentSearch = {this.searchData} callbackSearch = {this.LaunchSearch} />
-                                <p id="smallCardsViewerCaption">{this.state.showResults ? `Resultados - ${this.currentResults.length}` : "Cerca de tí"}</p>
+                                <p id="smallCardsViewerCaption">{this.state.showResults ? `Resultados - ${this.processedArrayResults.length}` : "Cerca de tí"}</p>
                                 {this.state.showResults ? this.InsertResults() : <></>}
                             </>);
                 }
                 case 1://FAVOURITES
                 {
-                    break;
+                    return (<>
+                        <Favs /*user = {this.user}*/ />
+                    </>);
                 }
                 case 2://CERTIFICATES
                 {
@@ -123,7 +178,7 @@ class Home extends Component
     };//InsertMenuScreen
 
     InsertResults = () => {
-        let arrayItems = this.currentResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
+        let arrayItems = this.processedArrayResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
         return (
             <div id="smallCardsViewer">
                 {arrayItems}                  
@@ -135,8 +190,10 @@ class Home extends Component
     {
         return (
             <div id = "homeContainer">
+                <HomeContext.Provider value = {this.user}>
                 {this.InsertMenuScreen()}
                 <Menu callback = {this.OnMenuItem} />
+                </HomeContext.Provider>
             </div>
         );
     }

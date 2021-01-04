@@ -121,5 +121,8 @@ $upper-margin: 12.5vh;
                 }
             }
         }
+        & .card:last-child .show{
+            margin-bottom: 9vh;
+        }
     }
 }

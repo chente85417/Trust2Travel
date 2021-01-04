@@ -109,8 +109,6 @@ class FormLogin extends Component
             }//else
         });
     }//OnClickedLogin
-
-
     
     render()
     {

@@ -29,7 +29,10 @@ $upper-margin: 0vh;
             line-height: 16px;
             letter-spacing: 0.4px;
             color: #404040;
-            ;
+        }
+        & .list-group{
+            height: 200px;
+            overflow-y: scroll;
         }
     }
     & #filterContainer{

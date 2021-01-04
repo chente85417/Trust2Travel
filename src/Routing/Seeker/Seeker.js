@@ -80,7 +80,7 @@ class Seeker extends Component
     InsertList = () => {
         let arrayItems = [];
         let cont = 0;
-        while((cont < 4) && (cont < this.currentLocationsList.length))
+        while(/*(cont < 4) && */(cont < this.currentLocationsList.length))
         {
             arrayItems.push(<ListGroup.Item key = {cont} eventKey = {this.currentLocationsList[cont]} >{this.currentLocationsList[cont]}</ListGroup.Item>);
             ++cont;

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+/*$upper-margin: 12.5vh;*/
+$upper-margin: 0vh;
+
+.smallCategoryContainer{
+    display: flex;
+    flex-wrap: wrap;
+    height: 4vh;
+    background-color: #F2F2F2;
+    border-radius: 1.562vh;
+    padding: 0px 3%;
+    margin-top: .5vh;
+    margin-right: 1%;
+    & p{
+        align-self: center;
+        font: {
+            family: Raleway;
+            style: normal;
+            weight: 500;
+            size: 11px;
+        }
+        line-height: 20px;
+        text-align: center;
+        letter-spacing: 0.25px;
+        color: #404040;
+    }
+}
+#loadingContainer{
+    margin: auto;
+}

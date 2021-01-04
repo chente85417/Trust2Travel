@@ -18,7 +18,6 @@ class MiniCertificates extends Component
     componentDidMount(){
         fetch(`${process.env.REACT_APP_URLBACK}getCertificates/${this.props.alID}`)
         .then(res => res.json()).then(data => {
-            console.log(data);
             if (!data.ret)
             {
                 //INFORMAR DE QUE NO SE HA PODIDO COMPLETAR LA CONSULTA
@@ -37,7 +36,7 @@ class MiniCertificates extends Component
     InsertComponents = () => {
         return (
             <>
-                <p id="caption">Certificados</p>
+                <p id="caption">{this.props.caption}</p>
                 {this.currentResults.map(item => {
                     return (
                         <div key = {item.CERTID} className="certificateContainer">
