@@ -93,20 +93,38 @@ class FormLogin extends Component
             headers: {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Headers' : '*',
+                'Access-Control-Allow-Credentials' : true,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(LoginData)
             }
         ).then(res => res.json()).then(data => {
-            if (data.ret)
+            switch (data.ret)
+            {
+                case 0://FAILED LOGIN
+                {
+                    this.messageBoxCfg = {title : "Error", body : data.caption};
+                    this.setState({showMessage : true});
+                    break;
+                }
+                case 1://LOGIN OK, FIRST LOGIN
+                {
+                    console.log("login correcto - primer login");
+                    document.cookie = `JWT=${data.caption}`;
+                    document.location.assign("/revista");
+                    break;
+                }
+                default://LOGIN OK, GO TO HOME
+                {
+                    console.log("login correcto");
+                    document.cookie = `JWT=${data.caption}`;
+                    this.setState({entryPrivateHome : true});
+                }
+            }//switch
+            /*if (data.ret)
             {
                 this.setState({entryPrivateHome : true});
-            }//if
-            else
-            {
-                this.messageBoxCfg = {title : "Error", body : data.caption};
-                this.setState({showMessage : true});
-            }//else
+            }//if*/
         });
     }//OnClickedLogin
     

@@ -42,11 +42,17 @@ $upper-margin: 0vh;
         color: rgba(0, 0, 0, 0.87);
         mix-blend-mode: normal;
     }
+    & #favContainer{
+        width: 100%;
+        margin-right: 5%;
+        margin-top: 1vh;
+        text-align: right;
+    }
     & #addressContainer{
         display: flex;
         flex-wrap: wrap;
         width: 90%;
-        margin-top: 3.75vh;
+        margin-top: 1vh;/*3.75vh;*/
         & #iconLocationContainer{
             align-self: center;
         }

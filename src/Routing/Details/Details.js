@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 //--------------------COMPONENTS--------------------//
-import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading.js';
 import MiniCertificates from '../MiniCertificates/MiniCertificates.js';
 import Activities from '../Activities/Activities.js';
 import Map from '../Map/Map.js';
 //----------------------ASSETS----------------------//
 import iconBack from '../../assets/back.svg';
-import iconFav from '../../assets/icon-fav.svg';
 import iconLocation from '../../assets/icon-location.svg';
 //----------------------STYLES----------------------//
 import './Details.scss';
@@ -50,9 +48,6 @@ class Details extends Component
                 <div id="header">
                     <div id="backContainer" onClick = {this.HideDetails}>
                         <img src={iconBack} alt="icono de volver"/>
-                    </div>
-                    <div id="favContainer">
-                        <Link to=""><img src={iconFav} alt="icono de favoritos"/></Link>
                     </div>
                 </div>
                 <div id="imageContainer">

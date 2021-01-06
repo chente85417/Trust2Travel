@@ -53,7 +53,7 @@ class Menu extends Component
 
     OnClickedMenuItem = (event, index) => {
         event.preventDefault();
-        if (this.props.user === "" && (index === 1 || index === 3))
+        if (this.user === "" && index === 1)
         {
             this.setState({showMessage : true});
             return;

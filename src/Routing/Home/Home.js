@@ -3,6 +3,7 @@ import HomeContext from '../../Contexts/HomeContext.js';
 //--------------------COMPONENTS--------------------//
 import Seeker from '../Seeker/Seeker.js';
 import Favs from '../Favs/Favs.js';
+import Profile from '../Profile/Profile.js';
 import Certificates from '../Certificates/Certificates.js';
 import Menu from '../Menu/Menu.js';
 import SmallCard from '../SmallCard/SmallCard.js';
@@ -17,6 +18,7 @@ class Home extends Component
     constructor(props){
         super(props);
         this.state = {
+            user : "",
             arrayShowMenuItems : [true, false, false, false],
             showResults : false,
             searching : false
@@ -27,11 +29,36 @@ class Home extends Component
             comunidad : "",
             filtros : [false, false, false]
         };
-        this.user = "vagb.chente@gmail.com";
         //this.user = "";
     }
 
     componentDidMount(){
+        /*
+        fetch(`${process.env.REACT_APP_URLBACK}getUsr`)
+        .then(res => res.json()).then(data => {
+            console.log(data);
+        });*/
+        var JWTValor = document.cookie.replace(/(?:(?:^|.*;\s*)JWT\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        const token = {"JWT" : JWTValor};
+        fetch(`${process.env.REACT_APP_URLBACK}getUsr`, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Headers' : '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(token)
+            }
+        ).then(res => res.json()).then(data => {
+            if (!data.ret)
+            {
+                this.setState({user : data.user});
+            }//if
+            else
+            {
+                this.setState({user : data.user});
+            }//else
+        });
         let storageValue = localStorage.getItem('currentHomeSearch');
         if (storageValue !== null)
         {
@@ -153,25 +180,21 @@ class Home extends Component
                                     <p>Viaja local y consciente</p>
                                 </div>
                                 <Seeker currentSearch = {this.searchData} callbackSearch = {this.LaunchSearch} />
-                                <p id="smallCardsViewerCaption">{this.state.showResults ? `Resultados - ${this.processedArrayResults.length}` : "Cerca de tí"}</p>
+                                <p id="smallCardsViewerCaption">{this.state.showResults ? `${this.processedArrayResults.length} Resultados` : "Cerca de tí"}</p>
                                 {this.state.showResults ? this.InsertResults() : <></>}
                             </>);
                 }
                 case 1://FAVOURITES
                 {
-                    return (<>
-                        <Favs /*user = {this.user}*/ />
-                    </>);
+                    return (<><Favs /*user = {this.user}*/ /></>);
                 }
                 case 2://CERTIFICATES
                 {
-                    return (<>
-                                <Certificates basicData = {this.props.initData} />
-                            </>);
+                    return (<><Certificates basicData = {this.props.initData} /></>);
                 }
                 default://PROFILE
                 {
-
+                    return (<><Profile /*user = {this.state.user}*/ /></>);
                 }
             }//switch
         }//if
@@ -190,7 +213,7 @@ class Home extends Component
     {
         return (
             <div id = "homeContainer">
-                <HomeContext.Provider value = {this.user}>
+                <HomeContext.Provider value = {this.state.user}>
                 {this.InsertMenuScreen()}
                 <Menu callback = {this.OnMenuItem} />
                 </HomeContext.Provider>

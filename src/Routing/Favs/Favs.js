@@ -96,8 +96,12 @@ class Favs extends Component
         });        
     };//componentDidMount
 
+    DeleteMe = () => {
+        this.componentDidMount();
+    };//DeleteMe
+
     InsertElements = () => {
-        let arrayItems = this.processedArrayResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
+        let arrayItems = this.processedArrayResults.map(item => <SmallCard key = {item.ALID} data = {item} callback = {this.DeleteMe} />);
         return (
             <div id="smallCardsViewer">
                 {arrayItems}                  
@@ -118,7 +122,7 @@ class Favs extends Component
             case 1:
                 {
                     contents =  <>
-                                    <p id="smallCardsViewerCaption">{`Guardados - ${this.processedArrayResults.length}`}</p>
+                                    <p id="smallCardsViewerCaption">{`${this.processedArrayResults.length} alojamientos guardados`}</p>
                                     {this.InsertElements()}
                                 </>;
                     break;
