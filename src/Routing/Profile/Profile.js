@@ -3,6 +3,7 @@ import HomeContext from '../../Contexts/HomeContext.js';
 import { Link } from 'react-router-dom';
 //--------------------COMPONENTS--------------------//
 //----------------------ASSETS----------------------//
+import person from '../../assets/person-profile.svg';
 //----------------------STYLES----------------------//
 import './Profile.scss';
 
@@ -24,13 +25,15 @@ class Profile extends Component
         {
             return (
                 <>
+                    <p id="wellcome">¡Hola, traveler!</p>
+                    <p id="claim">¿ya estás registrad@?</p>
                     <div id="loginContainer">
-                        <p>¿ya estás registrad@?</p>
-                        <Link to="/login">
-                            <strong>Iniciar sesión</strong>
-                        </Link>
+                        <Link to="/login">Iniciar sesión</Link>
                     </div>
-                    <p id="info">Próximamente añadiremos opciones para que puedas gestionar tu perfil</p>
+                    <div id="imgContainer">
+                        <img src={person} alt="fondo no cargado"/>
+                    </div>
+                    <p id="info">En Trust 2 Travel trabajamos para incluir opciones para que puedas gestionar tu perfil.</p>
                 </>
             );
         }//if
@@ -38,11 +41,16 @@ class Profile extends Component
         {
             return(
                 <>
-                    <p id="wellcome">Hola <span>{this.user}</span></p>
-                    <p id="info">Próximamente añadiremos opciones para que puedas gestionar tu perfil</p>
+                    <p id="wellcome">¡Hola, traveler!</p>
+                    <p id="claim">Este es tu perfil, desde aquí puedes iniciar o cerrar tu sesión</p>
+                    <p id="userAccount">{this.user}</p>
                     <div id="logoutContainer">
                         <p id="logout" onClick={this.Logout}><strong>Cerrar sesión</strong></p>
                     </div>
+                    <div id="imgContainer">
+                        <img src={person} alt="fondo no cargado"/>
+                    </div>
+                    <p id="info">En Trust 2 Travel trabajamos para incluir opciones para que puedas gestionar tu perfil.</p>
                 </>
             );
         }//else

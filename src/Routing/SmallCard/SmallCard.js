@@ -11,7 +11,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 //----------------------ASSETS----------------------//
 import iconLocation from '../../assets/icon-location.svg';
-import iconFav from '../../assets/icon-fav.svg';
+import iconFav from '../../assets/icon-fav-on.svg';
+import iconNoFav from '../../assets/icon-fav-off.svg';
 //----------------------STYLES----------------------//
 import './SmallCard.scss';
 
@@ -229,7 +230,7 @@ class SmallCard extends Component
                     </div>
                     <p id="name">{this.currentResults[0].NOMBRE}</p>
                     <div id="favContainer" onClick={this.OnClickedFavourites}>
-                        <img src={this.state.isFavourite ? iconFav : iconLocation} alt="icono de favoritos"/>
+                        <img src={this.state.isFavourite ? iconFav : iconNoFav} alt="icono de favoritos"/>
                     </div>
                     <div id="addressContainer">
                         <div id="iconLocationContainer">
