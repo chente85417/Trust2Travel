@@ -40,6 +40,7 @@ class Home extends Component
         });*/
         var JWTValor = document.cookie.replace(/(?:(?:^|.*;\s*)JWT\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         const token = {"JWT" : JWTValor};
+        //console.log(token);
         fetch(`${process.env.REACT_APP_URLBACK}getUsr`, {
             method: 'POST',
             headers: {
@@ -102,8 +103,8 @@ class Home extends Component
                         aux.push(categories[index]);
                     }//if
                 });
-                console.log(aux);
-                console.log(data.data);
+                //console.log(aux);
+                //console.log(data.data);
                 let currentID = "";
                 let item = {
                     ALID : undefined,
@@ -138,7 +139,7 @@ class Home extends Component
                     this.processedArrayResults.push(item);
                 }//if
 
-                console.log(this.processedArrayResults);
+                //console.log(this.processedArrayResults);
 
 
                 //this.currentResults = data.data;

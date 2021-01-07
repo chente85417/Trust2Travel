@@ -13,8 +13,15 @@ class Filters extends Component
             selectedFilters : this.props.arraySelectedFilters
         };
     }
-    onClickedClose = () => {
-        this.props.callback(this.state.selectedFilters);
+    onClickedClose = (event) => {
+        if (event.currentTarget.getAttribute("id") === "buttonSearch")
+        {
+            this.props.callback(this.state.selectedFilters, true);
+        }//if
+        else
+        {
+            this.props.callback(this.state.selectedFilters);
+        }//else
     }//onClickedClose
 
     ToggleFilter = (event) => {

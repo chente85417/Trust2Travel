@@ -44,31 +44,40 @@ class SmallCard extends Component
             else
             {
                 this.currentResults = data.caption;
-                //Checkout if it is set as favourite
-                const searchData = {
-                    "JWT" : this.JWTValue,
-                    "id" : this.props.data.ALID
-                };
-                fetch(`${process.env.REACT_APP_URLBACK}checkFavourite`, {
-                    method: 'POST',
-                    headers: {
-                        'Access-Control-Allow-Origin' : '*',
-                        'Access-Control-Allow-Headers' : '*',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(searchData)
-                    }
-                ).then(res => res.json()).then(dataFav => {
-                    if (dataFav.ret === "error")
-                    {
-                        this.messageBoxCfg = {title : "Error", body : dataFav.caption};
-                        this.setState({showMessage : true});
-                    }//if
-                    else
-                    {
-                        this.setState({showResults : true, isFavourite : dataFav.ret});
-                    }//else
-                });
+
+                if (this.JWTValue !== "")
+                {
+                    //Checkout if it is set as favourite
+                    const searchData = {
+                        "JWT" : this.JWTValue,
+                        "id" : this.props.data.ALID
+                    };
+                    //console.log(searchData);
+                    fetch(`${process.env.REACT_APP_URLBACK}checkFavourite`, {
+                        method: 'POST',
+                        headers: {
+                            'Access-Control-Allow-Origin' : '*',
+                            'Access-Control-Allow-Headers' : '*',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(searchData)
+                        }
+                    ).then(res => res.json()).then(dataFav => {
+                        if (dataFav.ret === "error")
+                        {
+                            this.messageBoxCfg = {title : "Error", body : dataFav.caption};
+                            this.setState({showMessage : true});
+                        }//if
+                        else
+                        {
+                            this.setState({showResults : true, isFavourite : dataFav.ret});
+                        }//else
+                    });
+                }//if
+                else
+                {
+                    this.setState({showResults : true, isFavourite : false});
+                }//else
             }//else
         });        
     };//componentDidMount
@@ -203,6 +212,11 @@ class SmallCard extends Component
                 });
             }//else
         }//if
+        else
+        {
+            this.messageBoxCfg = {title : "Ups!", body : "Para poder guardar favoritos debes acceder con tu cuenta."};
+            this.setState({showMessage : true});
+        }//else
     };//OnClickedFavourites
 
     DrawContents = () => {
