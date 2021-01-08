@@ -17,11 +17,15 @@ class LoginFront extends Component
         fetch(`${process.env.REACT_APP_URLBACK}loginGoogle`)
         .then(res => {
             console.log(res.status);
+            console.log(res.url);
+            window.location(res.url);
+            /*
             if (res.redirected)
             {
                 console.log(res.url);
                 window.location(res.url);
             }//if
+            */
         });
     }
 
