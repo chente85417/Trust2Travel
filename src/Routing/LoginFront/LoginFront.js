@@ -18,7 +18,7 @@ class LoginFront extends Component
         .then(res => {
             console.log(res.status);
             console.log(res.url);
-            window.location(res.url);
+            window.location.assign(res.url);
             /*
             if (res.redirected)
             {
