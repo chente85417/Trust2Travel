@@ -19,7 +19,7 @@ class FormLogin extends Component
         this.state = {
             hiddenPass : true,
             showMessage : this.props.confirm,
-            entryPrivateHome : false
+            entryPrivateHome : 0
         }
         this.eyeIcon = <FontAwesomeIcon icon={faEye} onClick={this.togglePass} />
         this.eyeSlash = <FontAwesomeIcon icon={faEyeSlash} onClick={this.togglePass} />
@@ -111,14 +111,14 @@ class FormLogin extends Component
                 {
                     console.log("login correcto - primer login");
                     document.cookie = `JWT=${data.caption}`;
-                    document.location.assign("/revista");
+                    this.setState({entryPrivateHome : 1});
                     break;
                 }
                 default://LOGIN OK, GO TO HOME
                 {
                     console.log("login correcto");
                     document.cookie = `JWT=${data.caption}`;
-                    this.setState({entryPrivateHome : true});
+                    this.setState({entryPrivateHome : 2});
                 }
             }//switch
             /*if (data.ret)
@@ -127,6 +127,24 @@ class FormLogin extends Component
             }//if*/
         });
     }//OnClickedLogin
+
+    ManageHome = () => {
+        switch (this.state.entryPrivateHome)
+        {
+            case 0:
+                {
+                   return(<></>);
+                }
+            case 1:
+                {
+                    return(<Redirect to="/revista"/>);
+                }
+            default:
+                {
+                    return(<Redirect to="/home"/>);
+                }
+        }//switch
+    };//ManageHome
     
     render()
     {
@@ -145,7 +163,7 @@ class FormLogin extends Component
 
         return (
             <div>
-                {this.state.entryPrivateHome ? <Redirect to="/home" /> : <></>}
+                {this.ManageHome()}
                 {this.modal()}
                 <form method="GET" action="" id = "formLoginContainer" onSubmit={this.OnClickedLogin}>
                     <div id="backContainer">
