@@ -15,10 +15,9 @@ class LoginFront extends Component
 {
     OnClickedLoginGoogle = () => {
         fetch(`${process.env.REACT_APP_URLBACK}loginGoogle`)
-        .then(res => {
-            console.log(res.status);
-            console.log(res.url);
-            window.location.assign(res.url);
+        .then(res => res.text()).then(data => {
+            console.log(data);
+            window.location.assign(data);
             /*
             if (res.redirected)
             {
