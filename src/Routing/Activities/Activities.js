@@ -46,7 +46,6 @@ class Activities extends Component
                         </div>
                         <div className="dataContainer">
                             <p className="name">{activity.NOMBRE}</p>
-                            <p className="description">{activity.DESCRIPCION}</p>
                             <div className="addressContainer">
                                 <div className="iconLocationContainer">
                                     <img src={iconLocation} alt="icono de localización" />
@@ -54,6 +53,7 @@ class Activities extends Component
                                 <p className="direction">{activity.DIRECCION}</p>
                                 <p className="location">{activity.LOCALIDAD}</p>
                             </div>
+                            <p className="description">{activity.DESCRIPCION}</p>
                         </div>
                     </div>
                 );
