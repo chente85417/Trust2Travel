@@ -20,7 +20,7 @@ $map-offset: 5vh;
         text-align: center;
         z-index: 200;
         & #spinner{
-            margin-top: 52.5vh;
+            margin-top: calc(52.5vh - #{$map-offset});
         }
     }
     & #loadingContainer:nth-child(3){

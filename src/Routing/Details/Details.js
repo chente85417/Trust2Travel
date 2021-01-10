@@ -83,7 +83,7 @@ class Details extends Component
                 <div className="separator"></div>
                 <Activities location = {this.currentResults[0].PROVINCIA} />
                 <div id="footer">
-                    <a href={this.currentResults[0].WEBSITE}>IR A LA WEB</a>
+                    <a href={this.currentResults[0].WEBSITE} target="_blank">IR A LA WEB</a>
                 </div>
             </>
         );
