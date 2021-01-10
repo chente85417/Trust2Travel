@@ -3,35 +3,73 @@ import { MapContainer, WMSTileLayer, LayersControl, TileLayer, Marker, Popup } f
 import L from 'leaflet';
 //--------------------COMPONENTS--------------------//
 //----------------------ASSETS----------------------//
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import icon from '../../assets/marker-icon-mini.png';
+import iconMain from '../../assets/main-icon-mini.png';
+import iconShadowMain from '../../assets/marker-shadow-mini.png';
 //----------------------STYLES----------------------//
 import './Map.scss';
 import 'leaflet/dist/leaflet.css';
 
+//import { Tooltip } from 'leaflet';
+
+var mainIcon = L.icon({
+    iconUrl: iconMain,
+    shadowUrl: iconShadowMain,
+
+    iconSize:       [18, 29],
+    shadowSize:     [29, 29],
+    iconAnchor:     [9, 28],
+    shadowAnchor:   [9, 28]
+});
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
-    shadowUrl: iconShadow
+    shadowUrl: iconShadowMain,
+
+    iconSize:       [18, 29],
+    shadowSize:     [29, 29],
+    iconAnchor:     [9, 28],
+    shadowAnchor:   [9, 28]
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
-/*
-var pnoa = L.tileLayer.wms("http://www.ign.es/wms-inspire/pnoa-ma?SERVICE=WMS&", {
-    layers: "OI.OrthoimageCoverage",//nombre de la capa (ver get capabilities)
-    format: 'image/jpeg',
-    transparent: true,
-    version: '1.3.0',//wms version (ver get capabilities)
-    attribution: "PNOA WMS. Cedido por © Instituto Geográfico Nacional de España"
- }).addTo(map);
-*/
+
 class Map extends Component
 {
+    constructor(props){
+        super(props);
+        this.mainLong = this.props.main.longitude;
+        this.mainLat = this.props.main.latitude;
+        this.mainName = this.props.main.name;
+    }
+
+    OnClickedPopup = (event) => {
+        event.preventDefault();
+        this.props.callback(event.currentTarget.getAttribute("id"), event.currentTarget.value);
+    };//OnClickedPopup
+
+    InsertNearbys = (items) => {
+        let arrayNearbys = items.map(element => {
+            return(
+                <Marker key = {element.ALID} position={[element.LATITUD, element.LONGITUD]}>
+                    <Popup>
+                        <p id={element.ALID} onClick={this.OnClickedPopup}>{element.NOMBRE}</p>
+                    </Popup>
+                </Marker>
+            );
+        });
+        return (
+            <>
+                {arrayNearbys}
+            </>
+        );
+    };//InsertNearbys
+
     render()
     {
         return (
             <div id = "mapContainer">
-                <p id="caption">Localización</p>
-                <MapContainer center={[this.props.latitude, this.props.longitude]} zoom={13} scrollWheelZoom={false}>
+                <MapContainer center={[this.mainLat, this.mainLong]} zoom={this.props.zoomLevel} scrollWheelZoom={false}>
                     <LayersControl position="topright">
                         <LayersControl.BaseLayer checked name="OpenStreetMap">
                             <TileLayer
@@ -56,9 +94,10 @@ class Map extends Component
                             />
                         </LayersControl.BaseLayer>
                     </LayersControl>
-                    <Marker position={[this.props.latitude, this.props.longitude]}>
-                        <Popup>{this.props.name}</Popup>
+                    <Marker position={[this.mainLat, this.mainLong]} icon={mainIcon}>
+                        {this.mainName !== "" ? <Popup>{this.mainName}</Popup> : <></>}
                     </Marker>
+                    {this.InsertNearbys(this.props.nearbyElements)}
                 </MapContainer>
             </div>
         );

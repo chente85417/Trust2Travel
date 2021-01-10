@@ -43,6 +43,10 @@ class Details extends Component
     };//HideDetails
 
     InsertComponents = () => {
+        const mainPoint = { latitude : this.currentResults[0].LATITUD,
+                            longitude : this.currentResults[0].LONGITUD,
+                            name : this.currentResults[0].NOMBRE
+                        };
         return (
             <>
                 <div id="header">
@@ -74,7 +78,8 @@ class Details extends Component
                 <div className="separator"></div>
                 <MiniCertificates alID = {this.props.alID} caption = "Certificados"/>
                 <div className="separator"></div>
-                <Map name = {this.currentResults[0].NOMBRE} longitude = {this.currentResults[0].LONGITUD} latitude = {this.currentResults[0].LATITUD} />
+                <p id="caption">Localización</p>
+                <Map main = {mainPoint} nearbyElements = {[]} zoomLevel = {13}/>
                 <div className="separator"></div>
                 <Activities location = {this.currentResults[0].PROVINCIA} />
                 <div id="footer">

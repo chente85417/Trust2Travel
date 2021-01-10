@@ -54,6 +54,7 @@ class Activities extends Component
                                 <p className="location">{activity.LOCALIDAD}</p>
                             </div>
                             <p className="description">{activity.DESCRIPCION}</p>
+                            <a href={activity.WEBSITE} target="_blank">IR A LA WEB</a>
                         </div>
                     </div>
                 );

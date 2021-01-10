@@ -10,19 +10,6 @@ $upper-margin: 0vh;
     align-content: flex-start;
     width: 100%;
     margin-top: 3.125vh;
-    & #caption{
-        width: 86.67%;
-        text-align: left;
-        font: {
-            family: Merriweather, serif;
-            style: normal;
-            weight: bold;
-            size: 14px;
-        }
-        line-height: 16px;
-        letter-spacing: 0.25px;
-        color: #404040;
-    }
     & .leaflet-container{
         width: 100%;
         height: 50vh;

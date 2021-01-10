@@ -3,6 +3,7 @@
 
 /*$upper-margin: 12.5vh;*/
 $upper-margin: 0vh;
+$map-offset: 5vh;
 
 #homeContainer{
     position: relative;
@@ -36,7 +37,8 @@ $upper-margin: 0vh;
     & #frontImage{
         position: relative;
         width: 100%;
-        height: calc(55vh - #{$upper-margin});
+        height: calc(55vh - #{$map-offset} - #{$upper-margin});
+        /*height: calc(55vh - #{$upper-margin});*/
         background-image: url("../../assets/fondo-home.png");
         background-size: cover;
         border-radius: 0px 0px 3.75vh 3.75vh;
@@ -44,7 +46,8 @@ $upper-margin: 0vh;
             position: absolute;
             width: 68.33%;
             height: 11.25vh;
-            top: calc(25vh - #{$upper-margin});
+            top: calc(25vh - #{$map-offset} - #{$upper-margin});
+            /*top: calc(25vh - #{$upper-margin});*/
             left: 10.55%;
             font: {
                 family: Raleway, sans-serif;
@@ -76,5 +79,35 @@ $upper-margin: 0vh;
         margin-left: 5.55%;
         overflow-x: scroll;
         background-color: blueviolet;*/
+    }
+    & #nearbyCaption{
+        margin: 6vh auto 0px 8.89%;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 18px;
+        }
+        line-height: 14px;
+        letter-spacing: 0.4px;
+        color: #464646;
+    }
+    & #nearbyContainer{
+        width: 90%;
+        height: calc(27vh + #{$map-offset});
+        margin-top: 1vh;
+        & #mapContainer{
+            margin-top: .5vh;
+            & .leaflet-container{
+                width: 100%;
+                height: calc(27vh + #{$map-offset});
+                margin-top: 0%;
+            }
+        }
+    }
+    & #nearbyCardsViewer{
+        width: 90%;
+        margin-top: 2vh;
+        margin-bottom: 9vh;
     }
 }

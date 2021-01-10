@@ -8,6 +8,8 @@ import Certificates from '../Certificates/Certificates.js';
 import Menu from '../Menu/Menu.js';
 import SmallCard from '../SmallCard/SmallCard.js';
 import Loading from '../Loading/Loading.js';
+import Map from '../Map/Map.js';
+import L from 'leaflet';
 //----------------------ASSETS----------------------//
 import logo from '../../assets/t2t-Logo.svg';
 //----------------------STYLES----------------------//
@@ -19,9 +21,11 @@ class Home extends Component
         super(props);
         this.state = {
             user : "",
+            positionAvailable : false,
             arrayShowMenuItems : [true, false, false, false],
             showResults : false,
-            searching : false
+            searching : false,
+            nearbySelected : {ALID : undefined, NOMBRE : "", CERTS : [], CATEGORIAS : []}
         };
         this.processedArrayResults = [];
         this.searchData = {
@@ -29,10 +33,50 @@ class Home extends Component
             comunidad : "",
             filtros : [false, false, false]
         };
-        //this.user = "";
+        this.currentLat = undefined;
+        this.currentLong = undefined;
+        this.arrayNearbyItems = [];
     }
 
     componentDidMount(){
+        this.GetLocation().then(data => {
+            if (data.ret)
+            {
+                this.currentLat = data.coords[0];
+                this.currentLong = data.coords[1];
+                const origin = L.latLng(this.currentLat, this.currentLong);
+                fetch(`${process.env.REACT_APP_URLBACK}getLocations`)
+                .then(res => res.json()).then(data => {
+                    if (!data.ret)
+                    {
+                        //INFORMAR DE QUE NO SE HA PODIDO COMPLETAR LA CONSULTA
+                        //this.messageBoxCfg = {title : "Error", body : data.caption};
+                        //this.setState({showMessage : true});
+                    }//if
+                    else
+                    {
+                        let candidates = 10;
+                        let found = 0;
+                        let count = 0;
+                        while ((found < candidates)&&(count < data.caption.length))
+                        {
+                            if (origin.distanceTo(L.latLng(data.caption[count].LATITUD, data.caption[count].LONGITUD)) < 50000)
+                            {
+                                this.arrayNearbyItems.push(data.caption[count]);
+                                ++found;
+                            } //if
+                            ++count;
+                        }//while
+                        console.log(this.currentLat, this.currentLong, this.arrayNearbyItems);
+                        this.setState({positionAvailable : true});
+                    }//else
+                });        
+            }//if
+            else
+            {
+                console.log("no me dejas que te posicione");
+            }//else
+        });
         /*
         fetch(`${process.env.REACT_APP_URLBACK}getUsr`)
         .then(res => res.json()).then(data => {
@@ -70,6 +114,21 @@ class Home extends Component
             this.setState({showResults : true});
         }//if       
     }//componentDidMount
+
+    GetLocation = () => {
+        return new Promise((response, reject) => {
+            let res = {};
+            navigator.geolocation.getCurrentPosition((position) =>  {
+                res = {ret : true, coords : [position.coords.latitude, position.coords.longitude]};
+                response(res);
+            }, 
+                (err) => {
+                res = {ret : false};
+                response(res);
+            }
+                                                    ); 
+                                                });
+    };//GetLocation
 
     LaunchSearch = (searchData) => {
         this.setState({searching : true});
@@ -181,8 +240,7 @@ class Home extends Component
                                     <p>Viaja local y consciente</p>
                                 </div>
                                 <Seeker currentSearch = {this.searchData} callbackSearch = {this.LaunchSearch} />
-                                <p id="smallCardsViewerCaption">{this.state.showResults ? `${this.processedArrayResults.length} Resultados` : "Cerca de tí"}</p>
-                                {this.state.showResults ? this.InsertResults() : <></>}
+                                {this.InsertResults()}
                             </>);
                 }
                 case 1://FAVOURITES
@@ -202,13 +260,52 @@ class Home extends Component
     };//InsertMenuScreen
 
     InsertResults = () => {
-        let arrayItems = this.processedArrayResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
-        return (
-            <div id="smallCardsViewer">
-                {arrayItems}                  
-            </div>
-        );
+        if (this.state.showResults)
+        {
+            let arrayItems = this.processedArrayResults.map(item => <SmallCard key = {item.ALID} data = {item} />);
+            return (
+                <>
+                    <p id="smallCardsViewerCaption">{this.state.showResults ? `${this.processedArrayResults.length} Resultados` : "Cerca de tí"}</p>
+                    <div id="smallCardsViewer">
+                        {arrayItems}                  
+                    </div>
+                </>
+            );
+        }//if
+        else
+        {
+            if (this.state.positionAvailable)
+            {
+                const mainPoint = { latitude : this.currentLat,
+                                    longitude : this.currentLong,
+                                    name : ""
+                                };
+                return (
+                    <>
+                        <p id="nearbyCaption">Cerca de tí</p>
+                        <div id="nearbyContainer">
+                            <Map    main = {mainPoint} 
+                                    nearbyElements = {this.arrayNearbyItems} 
+                                    zoomLevel = {8}
+                                    callback = {this.ShowMe} />
+                        </div>
+                        {this.state.nearbySelected.ALID !== undefined ? 
+                        <div id="nearbyCardsViewer">
+                            <SmallCard key = {this.state.nearbySelected.ALID} data = {this.state.nearbySelected} />                 
+                        </div>  : <></>}
+                    </>
+                );
+            }//if
+            else
+            {
+                return (<></>);
+            }//else
+        }//else        
     };//InsertResults
+
+    ShowMe = (id, name) => {
+        this.setState({nearbySelected : {ALID : id, NOMBRE : name, CERTS : [], CATEGORIAS : []}});
+    };//ShowMe
 
     render()
     {

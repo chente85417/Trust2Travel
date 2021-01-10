@@ -148,6 +148,19 @@ $upper-margin: 0vh;
             color: #404040;
         }
     }
+    & #caption{
+        width: 86.67%;
+        text-align: left;
+        font: {
+            family: Merriweather, serif;
+            style: normal;
+            weight: bold;
+            size: 14px;
+        }
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: #404040;
+    }
     & #footer{
         display: flex;
         justify-content: flex-end;

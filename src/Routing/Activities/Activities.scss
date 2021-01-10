@@ -106,6 +106,19 @@ $upper-margin: 0vh;
                         padding-left: 2.7vh;
                     }
                 }
+                & a{
+                    width: 100%;
+                    padding-left: 5%;
+                    cursor: pointer;
+                    font: {
+                        family: Raleway, sans-serif;
+                        style: normal;
+                        weight: 600;
+                        size: 12px;
+                    }
+                    line-height: 14px;
+                    color: #2C5337;
+                }
             }
         }
     }
