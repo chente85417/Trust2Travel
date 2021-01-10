@@ -88,13 +88,13 @@ $upper-margin: 0vh;
                 width: 62%;
             }
         }
-        & #buttonLoginFacebookContainer{
+        /*& #buttonLoginFacebookContainer{
             margin-top: 2.4vh;
             & #innerContainerFacebook{
                 width: 64%;
             }
-        }
-        & #buttonLoginGoogleContainer, #buttonLoginFacebookContainer{           
+        }*/
+        & #buttonLoginGoogleContainer/*, #buttonLoginFacebookContainer*/{           
             & p{
                 margin-bottom: 0px;
                 align-self: center;

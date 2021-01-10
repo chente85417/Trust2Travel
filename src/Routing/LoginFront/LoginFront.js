@@ -64,14 +64,14 @@ class LoginFront extends Component
                             <p>Conectar con Google</p>
                         </div>
                     </div>
-                    <div id="buttonLoginFacebookContainer" className="button">
+                    {/* <div id="buttonLoginFacebookContainer" className="button">
                         <div className="innerContainer" id="innerContainerFacebook">
                             <div>
                                 <img src={iconFacebook} alt="icono de Facebook"/>
                             </div>
                             <p>Conectar con Facebook</p>
                         </div>
-                    </div>
+                    </div> */}
                     <div id="loginContainer">
                         <p>¿ya estás registrad@?</p>
                         <Link to="/login">
