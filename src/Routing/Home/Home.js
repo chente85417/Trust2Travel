@@ -82,6 +82,7 @@ class Home extends Component
         .then(res => res.json()).then(data => {
             console.log(data);
         });*/
+        console.log(document.cookie);
         var JWTValor = document.cookie.replace(/(?:(?:^|.*;\s*)JWT\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         const token = {"JWT" : JWTValor};
         //console.log(token);
