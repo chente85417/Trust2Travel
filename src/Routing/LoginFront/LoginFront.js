@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 /*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'*/
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 //--------------------COMPONENTS--------------------//
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 //----------------------ASSETS----------------------//
 import iconEmail from '../../assets/icon-email.svg';
 import iconGoogle from '../../assets/icon-google.svg';
-import iconFacebook from '../../assets/icon-facebook.svg';
+//import iconFacebook from '../../assets/icon-facebook.svg';
 import iconClose from '../../assets/icon-close.svg';
 //----------------------STYLES----------------------//
 import './LoginFront.scss';
@@ -16,15 +18,7 @@ class LoginFront extends Component
     OnClickedLoginGoogle = () => {
         fetch(`${process.env.REACT_APP_URLBACK}loginGoogle`)
         .then(res => res.text()).then(data => {
-            console.log(data);
-            window.location.assign(data);
-            /*
-            if (res.redirected)
-            {
-                console.log(res.url);
-                window.location(res.url);
-            }//if
-            */
+            document.location.assign(data);
         });
     }
 

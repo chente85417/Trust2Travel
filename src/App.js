@@ -105,6 +105,12 @@ class App extends Component
             <Route path="/details">
               <Details />
             </Route>
+            <Route exact path="/infoPage/GenericError">
+              {<InfoPage text1 = "Lo sentimos, no es posible acceder a la aplicación" text2 = "Error acceso OAuth" text3 = "Se ha producido un problema que impide el acceso a través de OAuth. Inténtalo de nuevo más tarde." />}
+            </Route>
+            <Route exact path="/infoPage/FailOAuth">
+              {<InfoPage text1 = "No es posible acceder a la aplicación" text2 = "Confirmación de registro pendiente" text3 = "Aunque hayas utilizado Google debes confirmar previamente tu registro. Revisa tus correos pues Trust2Travel te ha enviado un correo con un link de confirmación." />}
+            </Route>
             <Route exact path="/infoPage/register">
               {<InfoPage text1 = {this.arrayTextsRegister[0]} text2 = {this.arrayTextsRegister[1]} text3 = {this.arrayTextsRegister[2]} />}
             </Route>
