@@ -98,9 +98,7 @@ class App extends Component
               {<FormLogin confirm = {false} />}
             </Route>
             <Route path="/home">
-              {/* <DetailsContext.Provider value = {this.SetALID}> */}
-                {this.state.homeData !== undefined ? <Home initData = {this.state.homeData} /> : <Loading />} 
-              {/* </DetailsContext.Provider> */}
+              {this.state.homeData !== undefined ? <Home initData = {this.state.homeData} /> : <Loading />}
             </Route>
             <Route path="/details">
               <Details />

@@ -62,7 +62,7 @@ class Certificates extends Component
                                 <p className="description">{item.DESCRIPCION}</p>
                                 <p className="web">
                                     Visita la web oficial para más información</p>
-                                <a href={item.WEBSITE}>pulsando aquí.</a>
+                                <a href={item.WEBSITE} target = "_blank">pulsando aquí.</a>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>);

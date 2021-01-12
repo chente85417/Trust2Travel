@@ -1,3 +1,9 @@
-
+#loadingContainer{
+    display: flex;
+    justify-content: center;
+    & #spinner{
+        margin-top: calc(50vh - 12px);
+    }
+}
 
 
