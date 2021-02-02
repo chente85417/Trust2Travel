@@ -16,18 +16,20 @@ The project is based on the concept of sustainability and responsible consuming 
  - **Cybersecurity**: Edward John Rodríguez Pérez.
 
 
-# Getting Started with Create React App
+## The App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application was developed with React, with an overall developing time of about 25 full-effort and passionate days.
+The features of the app include:
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - 23 complete React components.
+ - Login system with usual user-password registering with email confirmation and password reset, and Google OAuth.
+ - Full guest operative except for favourites creation.
+ - Favourite creation for registered users.
+ - Onboarding system to present main features.
+ - Predictive search with filtering based on certificates.
+ - Master-detail view of touristic locations.
+ - 10 suggested locations nearby the user´s location.
+ - Openstreet and satellital maps.
+ - Suggested nearby activities for locations.
+ - MySQL powered.
+ - Backend developed with Node.js and Express.(See Trust2TravelBack project).
