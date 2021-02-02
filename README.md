@@ -34,5 +34,6 @@ The features of the app include:
  - MySQL powered.
  - Backend developed with Node.js and Express.(See Trust2TravelBack project).
  
+Due to the lack of development time and considering the initial scope of the project, it has been designed for correct viewing in mobile devices such as mobile phones and thus, it may not present responsiveness in other screen sizes.
 The app was finally deployed in Heroku and can be accessed through: https://trust2travel.herokuapp.com.
 
