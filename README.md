@@ -33,3 +33,6 @@ The features of the app include:
  - Suggested nearby activities for locations.
  - MySQL powered.
  - Backend developed with Node.js and Express.(See Trust2TravelBack project).
+ 
+The app was finally deployed in Heroku and can be accessed through: https://trust2travel.herokuapp.com.
+
